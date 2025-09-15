@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElytraSky(TC) xin商店</title>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ES Online</title>
+<style>
         :root {
             --primary-color: #4CAF50;
             --dark-bg: #121212;
@@ -175,7 +176,7 @@
         }
         
         .add-to-cart.clicked::after {
-            content: "✓ 已添加";
+            content: "✓ Added";
             position: absolute;
             top: 0;
             left: 0;
@@ -444,318 +445,317 @@
             }
         }
     </style>
-</head>
+<style>
+[data-lang] { display: none; }
+html[lang="en"] [data-lang="en"],
+html[lang="zh-CN"] [data-lang="zh-CN"],
+html[lang="zh-TW"] [data-lang="zh-TW"] {
+    display: inline;
+}
+</style></head>
 <body>
-    <div class="toast" id="toast"></div>
-    
-    <nav class="navbar">
-        <div class="nav-links">
-            <a href="#elytrasky-kits">ElytraSky-Kits</a>
-            <a href="#other-org-kits">其他组织kit</a>
-            <a href="#misc-kits">杂项kit</a>
-            <a href="#banner-kits">旗帜类kit</a>
-            <a href="#forbidden-kits">违禁品kit</a>
-        </div>
-    </nav>
-
-    <div class="container">
-        <h1>ElytraSky(TC) 商店</h1>
-         <section id="elytrasky-kits" class="category">
-            <h2 class="category-title">ElytraSky-Kits</h2>
-            <div class="products">
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589f90662c.jpg" alt="TC生存盒">
-                    </div>
-                    <div class="product-name">TC生存盒</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="es1" data-name="TC生存盒" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589f901276.jpg" alt="TC不死图腾盒">
-                    </div>
-                    <div class="product-name">TC不死图腾盒</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="es2" data-name="TC不死图腾盒" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589f93978c.jpg" alt="TC矿物盒">
-                    </div>
-                    <div class="product-name">TC矿物盒</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="es3" data-name="TC矿物盒" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589f91c3ff.jpg" alt="TC炸弹盒">
-                    </div>
-                    <div class="product-name">TC炸弹盒</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="es4" data-name="TC炸弹盒" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589f914709.jpg" alt="TC鞘翅盒">
-                    </div>
-                    <div class="product-name">TC鞘翅盒</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="es5" data-name="TC鞘翅盒" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589c740886.jpg" alt="TC烟花盒">
-                    </div>
-                    <div class="product-name">TC烟花盒</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="es6" data-name="TC烟花盒" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589c73777f.jpg" alt="ElytraSky(TC) Banners Kit">
-                    </div>
-                    <div class="product-name">ElytraSky(TC) Banners Kit</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="es7" data-name="ElytraSky(TC) Banners Kit" data-price="0.2">加入购物车</button>
-                </div>
-            </div>
-        </section>
-        
-        <section id="other-org-kits" class="category">
-            <h2 class="category-title">其他组织kit</h2>
-            <div class="products">
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c5877a9933f.jpg" alt="魔女の武器装备">
-                    </div>
-                    <div class="product-name">魔女の武器装备</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="org1" data-name="魔女の武器装备" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c5877b4a99d.jpg" alt="魔女の战斗补给">
-                    </div>
-                    <div class="product-name">魔女の战斗补给</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="org2" data-name="魔女の战斗补给" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c5877b3e1a1.jpg" alt="魔女の战斗补给2">
-                    </div>
-                    <div class="product-name">魔女の战斗补给2</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="org3" data-name="魔女の战斗补给2" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a00d90ae.jpg" alt="【长安】kit">
-                    </div>
-                    <div class="product-name">【长安】kit</div>
-                    <div class="product-price">¥0.10</div>
-                    <button class="add-to-cart" data-id="org4" data-name="【长安】kit" data-price="0.1">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a03accd1.jpg" alt="NAU组织物资盒v3">
-                    </div>
-                    <div class="product-name">NAU组织物资盒v3</div>
-                    <div class="product-price">¥0.10</div>
-                    <button class="add-to-cart" data-id="org5" data-name="NAU组织物资盒v3" data-price="0.1">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a07a2003.jpg" alt="TMR PVP KIT">
-                    </div>
-                    <div class="product-name">TMR PVP KIT</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="org6" data-name="TMR PVP KIT" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a07ce52c.jpg" alt="TGM萌新帮助kit">
-                    </div>
-                    <div class="product-name">TGM萌新帮助kit</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="org7" data-name="TGM萌新帮助kit" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58d0cda2db.jpg" alt="hyppvpkit">
-                    </div>
-                    <div class="product-name">hyppvpkit</div>
-                    <div class="product-price">¥0.10</div>
-                    <button class="add-to-cart" data-id="org8" data-name="hyppvpkit" data-price="0.1">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58d6f5fbf7.jpg" alt="SH | 装备kit">
-                    </div>
-                    <div class="product-name">SH | 装备kit</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="org9" data-name="SH | 装备kit" data-price="0.2">加入购物车</button>
-                </div>
-            </div>
-        </section>
-        
-        <section id="misc-kits" class="category">
-            <h2 class="category-title">杂项kit</h2>
-            <div class="products">
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c5877b42e71.jpg" alt="魔女の驴刷kit">
-                    </div>
-                    <div class="product-name">魔女の驴刷kit</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="misc1" data-name="魔女の驴刷kit" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c5877b44d13.jpg" alt="魔女の红石">
-                    </div>
-                    <div class="product-name">魔女の红石</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="misc2" data-name="魔女の红石" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589c74f45d.jpg" alt="我也是养鸡大户">
-                    </div>
-                    <div class="product-name">我也是养鸡大户</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="misc3" data-name="我也是养鸡大户" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589c739dbf.jpg" alt="魔女的模板图鉴">
-                    </div>
-                    <div class="product-name">魔女的模板图鉴</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="misc4" data-name="魔女的模板图鉴" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a02b92d0.jpg" alt="魔女的异次元口袋">
-                    </div>
-                    <div class="product-name">魔女的异次元口袋</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="misc5" data-name="魔女的异次元口袋" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a035a92e.jpg" alt="鲜花kit~W2_灵鱼">
-                    </div>
-                    <div class="product-name">鲜花kit~W2_灵鱼</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="misc6" data-name="鲜花kit~W2_灵鱼" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a071c9d3.jpg" alt="狂乱的鸡尾酒">
-                    </div>
-                    <div class="product-name">狂乱的鸡尾酒</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="misc7" data-name="狂乱的鸡尾酒" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58d0cc6156.jpg" alt="杂物盒kit~W2_灵鱼">
-                    </div>
-                    <div class="product-name">杂物盒kit~W2_灵鱼</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="misc8" data-name="杂物盒kit~W2_灵鱼" data-price="0.2">加入购物车</button>
-                </div>
-            </div>
-        </section>
-        
-        <section id="banner-kits" class="category">
-            <h2 class="category-title">旗帜类kit</h2>
-            <div class="products">
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589c73777f.jpg" alt="ElytraSky(TC) Banners Kit">
-                    </div>
-                    <div class="product-name">ElytraSky(TC) Banners Kit</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="banner1" data-name="ElytraSky(TC) Banners Kit" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58d0ce4573.jpg" alt="云梦泽公会（旗帜kit）">
-                    </div>
-                    <div class="product-name">云梦泽公会（旗帜kit）</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="banner2" data-name="云梦泽公会（旗帜kit）" data-price="0.2">加入购物车</button>
-                </div>
-            </div>
-        </section>
-        
-        <section id="forbidden-kits" class="category">
-            <h2 class="category-title">违禁品kit</h2>
-            <div class="products">
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a08275d3.jpg" alt="32k床">
-                    </div>
-                    <div class="product-name">32k床</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="forbidden1" data-name="32k床" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a04a1337.jpg" alt="32k钻石剑">
-                    </div>
-                    <div class="product-name">32k钻石剑</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="forbidden2" data-name="32k钻石剑" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58d0ff30ab.jpg" alt="有手臂的盔甲架">
-                    </div>
-                    <div class="product-name">有手臂的盔甲架</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="forbidden3" data-name="有手臂的盔甲架" data-price="0.2">加入购物车</button>
-                </div>
-                <div class="product">
-                    <div class="product-image-container">
-                        <img class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a033539d.jpg" alt="op药水">
-                    </div>
-                    <div class="product-name">op药水</div>
-                    <div class="product-price">¥0.20</div>
-                    <button class="add-to-cart" data-id="forbidden4" data-name="op药水" data-price="0.2">加入购物车</button>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div class="cart-container" id="cart-container">
-        <div class="cart-header" id="cart-toggle">
-            <div class="cart-title">购物车 <span id="cart-count">0</span></div>
-            <div class="cart-toggle">▼</div>
-        </div>
-        <div class="cart-content" id="cart-content">
-            <div id="cart-items">
-                <!-- 购物车商品将在这里显示 -->
-            </div>
-            <div class="cart-total">
-                总计: ¥<span id="total-price">0.00</span>
-            </div>
-            <div class="username-input">
-                <label for="username">游戏ID:</label>
-                <input type="text" id="username" placeholder="请输入您的游戏ID">
-            </div>
-            <div class="cart-actions">
-                <button class="generate-code" id="generate-code">生成订单代码</button>
-                <button class="clear-cart" id="clear-cart">清空购物车</button>
-            </div>
-            <div class="code-output" id="code-output"></div>
-        </div>
-    </div>
-
-    <script>
+<div class="toast" id="toast"></div>
+<nav class="navbar">
+<div class="nav-links">
+<a href="#elytrasky-kits">ElytraSky-Kits</a>
+<a href="#other-org-kits">Other-kit</a>
+<a href="#misc-kits">雜項kit</a>
+<a href="#banner-kits">旗幟類kit</a>
+<a href="#forbidden-kits">違禁品kit</a>
+<select id="language-select" style="border: 1px solid var(--primary-color); border-radius: 20px; background: transparent; color: var(--primary-color); padding: 6px 12px; font-size: 0.9em;"><option value="en">English</option><option value="zh-TW">繁體中文</option><option value="zh-CN">简体中文</option></select></div>
+</nav>
+<div class="container">
+<h1>ElytraSky(TC) Online Webstore</h1>
+<section class="category" id="elytrasky-kits">
+<h2 class="category-title"><span data-lang="zh-CN">ElytraSky-Kits</span><span data-lang="zh-TW">ElytraSky-Kits</span><span data-lang="en">ElytraSky-Kits</span></h2>
+<div class="products">
+<div class="product">
+<div class="product-image-container">
+<img alt="TC生存盒" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589f90662c.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">TC生存盒</span><span data-lang="zh-TW">TC生存盒</span><span data-lang="en">TC Survival Box</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="es1" data-name="TC生存盒" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="TC不死图腾盒" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589f901276.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">TC不死圖騰盒</span><span data-lang="zh-TW">TC不死圖騰盒</span><span data-lang="en">TC Totem Box</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="es2" data-name="TC不死图腾盒" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="TC矿物盒" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589f93978c.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">TC礦物盒</span><span data-lang="zh-TW">TC礦物盒</span><span data-lang="en">TC Ore Box</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="es3" data-name="TC矿物盒" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="TC炸弹盒" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589f91c3ff.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">TC炸彈盒</span><span data-lang="zh-TW">TC炸彈盒</span><span data-lang="en">TC Bomb Box</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="es4" data-name="TC炸弹盒" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="TC鞘翅盒" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589f914709.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">TC鞘翅盒</span><span data-lang="zh-TW">TC鞘翅盒</span><span data-lang="en">TC Elytra Box</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="es5" data-name="TC鞘翅盒" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="TC烟花盒" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589c740886.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">TC煙火盒</span><span data-lang="zh-TW">TC煙火盒</span><span data-lang="en">TC Fireworks Box</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="es6" data-name="TC烟花盒" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="ElytraSky(TC) Banners Kit" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589c73777f.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">ElytraSky(TC) 旗幟組</span><span data-lang="zh-TW">ElytraSky(TC) 旗幟組</span><span data-lang="en">ElytraSky(TC) Banners Kit</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="es7" data-name="ElytraSky(TC) Banners Kit" data-price="0.2">加入购物车</button>
+</div>
+</div>
+</section>
+<section class="category" id="other-org-kits">
+<h2 class="category-title"><span data-lang="zh-CN">其他組織kit</span><span data-lang="zh-TW">其他組織kit</span><span data-lang="en">Other Organization Kits</span></h2>
+<div class="products">
+<div class="product">
+<div class="product-image-container">
+<img alt="魔女の武器装备" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c5877a9933f.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">魔女の武器裝備</span><span data-lang="zh-TW">魔女の武器裝備</span><span data-lang="en">Witch's Weapons</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="org1" data-name="魔女の武器装备" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="魔女の战斗补给" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c5877b4a99d.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">魔女の戰鬥補給</span><span data-lang="zh-TW">魔女の戰鬥補給</span><span data-lang="en">Witch's Battle Supply</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="org2" data-name="魔女の战斗补给" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="魔女の战斗补给2" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c5877b3e1a1.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">魔女の戰鬥補給2</span><span data-lang="zh-TW">魔女の戰鬥補給2</span><span data-lang="en">Witch's Battle Supply 2</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="org3" data-name="魔女の战斗补给2" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="【长安】kit" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a00d90ae.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">【長安】kit</span><span data-lang="zh-TW">【長安】kit</span><span data-lang="en">[Chang'an] Kit</span></div>
+<div class="product-price">¥0.10</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="org4" data-name="【长安】kit" data-price="0.1">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="NAU组织物资盒v3" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a03accd1.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">NAU組織物資盒v3</span><span data-lang="zh-TW">NAU組織物資盒v3</span><span data-lang="en">NAU Supply Box v3</span></div>
+<div class="product-price">¥0.10</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="org5" data-name="NAU组织物资盒v3" data-price="0.1">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="TMR PVP KIT" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a07a2003.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">TMR PVP KIT</span><span data-lang="zh-TW">TMR PVP KIT</span><span data-lang="en">TMR PVP KIT</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="org6" data-name="TMR PVP KIT" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="TGM萌新帮助kit" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a07ce52c.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">TGM萌新幫助kit</span><span data-lang="zh-TW">TGM萌新幫助kit</span><span data-lang="en">TGM Newbie Kit</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="org7" data-name="TGM萌新帮助kit" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="hyppvpkit" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58d0cda2db.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">hyp PVP Kit</span><span data-lang="zh-TW">hyp PVP Kit</span><span data-lang="en">hyp PVP Kit</span></div>
+<div class="product-price">¥0.10</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="org8" data-name="hyppvpkit" data-price="0.1">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="SH | 装备kit" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58d6f5fbf7.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">SH | 裝備kit</span><span data-lang="zh-TW">SH | 裝備kit</span><span data-lang="en">SH | Equipment Kit</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="org9" data-name="SH | 装备kit" data-price="0.2">加入购物车</button>
+</div>
+</div>
+</section>
+<section class="category" id="misc-kits">
+<h2 class="category-title"><span data-lang="zh-CN">雜項kit</span><span data-lang="zh-TW">雜項kit</span><span data-lang="en">Miscellaneous Kits</span></h2>
+<div class="products">
+<div class="product">
+<div class="product-image-container">
+<img alt="魔女の驴刷kit" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c5877b42e71.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">魔女の驢刷kit</span><span data-lang="zh-TW">魔女の驢刷kit</span><span data-lang="en">Witch's Donkey Duping Kit</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="misc1" data-name="魔女の驴刷kit" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="魔女の红石" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c5877b44d13.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">魔女の紅石</span><span data-lang="zh-TW">魔女の紅石</span><span data-lang="en">Witch's Redstone</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="misc2" data-name="魔女の红石" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="我也是养鸡大户" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589c74f45d.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">我也是養雞大戶</span><span data-lang="zh-TW">我也是養雞大戶</span><span data-lang="en">I'm Also a Chicken Farmer</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="misc3" data-name="我也是养鸡大户" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="魔女的模板图鉴" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589c739dbf.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">魔女的模板圖鑑</span><span data-lang="zh-TW">魔女的模板圖鑑</span><span data-lang="en">Witch's Template Book</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="misc4" data-name="魔女的模板图鉴" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="魔女的异次元口袋" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a02b92d0.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">魔女的異次元口袋</span><span data-lang="zh-TW">魔女的異次元口袋</span><span data-lang="en">Witch's Dimensional Pocket</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="misc5" data-name="魔女的异次元口袋" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="鲜花kit~W2_灵鱼" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a035a92e.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">鮮花kit~W2_靈魚</span><span data-lang="zh-TW">鮮花kit~W2_靈魚</span><span data-lang="en">Flower Kit ~ W2_Lingyu</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="misc6" data-name="鲜花kit~W2_灵鱼" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="狂乱的鸡尾酒" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a071c9d3.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">狂亂的雞尾酒</span><span data-lang="zh-TW">狂亂的雞尾酒</span><span data-lang="en">Frantic Cocktail</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="misc7" data-name="狂乱的鸡尾酒" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="杂物盒kit~W2_灵鱼" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58d0cc6156.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">雜物盒kit~W2_靈魚</span><span data-lang="zh-TW">雜物盒kit~W2_靈魚</span><span data-lang="en">Misc Box Kit ~ W2_Lingyu</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="misc8" data-name="杂物盒kit~W2_灵鱼" data-price="0.2">加入购物车</button>
+</div>
+</div>
+</section>
+<section class="category" id="banner-kits">
+<h2 class="category-title"><span data-lang="zh-CN">旗幟類kit</span><span data-lang="zh-TW">旗幟類kit</span><span data-lang="en">Banner Kits</span></h2>
+<div class="products">
+<div class="product">
+<div class="product-image-container">
+<img alt="ElytraSky(TC) Banners Kit" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c589c73777f.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">ElytraSky(TC) 旗幟組</span><span data-lang="zh-TW">ElytraSky(TC) 旗幟組</span><span data-lang="en">ElytraSky(TC) Banners Kit</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="banner1" data-name="ElytraSky(TC) Banners Kit" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="云梦泽公会（旗帜kit）" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58d0ce4573.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">雲夢澤公會（旗幟kit）</span><span data-lang="zh-TW">雲夢澤公會（旗幟kit）</span><span data-lang="en">Yumengze Guild (Banner Kit)</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="banner2" data-name="云梦泽公会（旗帜kit）" data-price="0.2">加入购物车</button>
+</div>
+</div>
+</section>
+<section class="category" id="forbidden-kits">
+<h2 class="category-title"><span data-lang="zh-CN">違禁品kit</span><span data-lang="zh-TW">違禁品kit</span><span data-lang="en">Forbidden Kits</span></h2>
+<div class="products">
+<div class="product">
+<div class="product-image-container">
+<img alt="32k床" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a08275d3.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">32k床</span><span data-lang="zh-TW">32k床</span><span data-lang="en">32k Bed</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="forbidden1" data-name="32k床" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="32k钻石剑" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a04a1337.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">32k鑽石劍</span><span data-lang="zh-TW">32k鑽石劍</span><span data-lang="en">32k Diamond Sword</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="forbidden2" data-name="32k钻石剑" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="有手臂的盔甲架" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58d0ff30ab.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">有手臂的盔甲架</span><span data-lang="zh-TW">有手臂的盔甲架</span><span data-lang="en">Armored Stand with Arms</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="forbidden3" data-name="有手臂的盔甲架" data-price="0.2">加入购物车</button>
+</div>
+<div class="product">
+<div class="product-image-container">
+<img alt="op药水" class="product-image" src="https://youke1.picui.cn/s1/2025/09/13/68c58a033539d.jpg"/>
+</div>
+<div class="product-name"><span data-lang="zh-CN">op藥水</span><span data-lang="zh-TW">op藥水</span><span data-lang="en">OP Potion</span></div>
+<div class="product-price">¥0.20</div>
+<button class="add-to-cart" data-i18n-btn="add_to_cart" data-id="forbidden4" data-name="op药水" data-price="0.2">加入购物车</button>
+</div>
+</div>
+</section>
+</div>
+<div class="cart-container" id="cart-container">
+<div class="cart-header" id="cart-toggle">
+<div class="cart-title"><span data-i18n="cart">购物车</span><span id="cart-count">0</span></div>
+<div class="cart-toggle">▼</div>
+</div>
+<div class="cart-content" id="cart-content">
+<div id="cart-items">
+<!-- 购物车商品将在这里显示 -->
+</div>
+<div class="cart-total">
+                Total: ¥<span id="total-price">0.00</span>
+</div>
+<div class="username-input">
+<label for="username"><span data-i18n="game_id">游戏ID:</span></label>
+<input data-i18n-placeholder="enter_game_id" id="username" placeholder="请输入您的游戏ID" type="text"/>
+</div>
+<div class="cart-actions">
+<button class="generate-code" id="generate-code">Generate Invoice Code</button>
+<button class="clear-cart" id="clear-cart">Clear Cart</button>
+</div>
+<div class="code-output" id="code-output"></div>
+</div>
+</div>
+<script>
         let cart = [];
         let totalPrice = 0;
         const toast = document.getElementById('toast');
@@ -821,7 +821,7 @@
             
             totalPrice += parseFloat(price);
             updateCart();
-            showToast(`已添加 ${name} 到购物车`);
+            showToast(`Added ${name} to the cart`);
         }
         
         // 更新购物车显示
@@ -833,7 +833,7 @@
             cartItemsElement.innerHTML = '';
             
             if (cart.length === 0) {
-                cartItemsElement.innerHTML = '<p style="text-align:center;padding:20px 0;">购物车是空的</p>';
+                cartItemsElement.innerHTML = '<p style="text-align:center;padding:20px 0;">The cart is empty</p>';
                 document.getElementById('code-output').style.display = 'none';
             } else {
                 cart.forEach((item, index) => {
@@ -898,31 +898,31 @@
             totalPrice -= item.price * item.quantity;
             cart.splice(index, 1);
             updateCart();
-            showToast(`已移除 ${item.name}`);
+            showToast(`Removed ${item.name}`);
         }
         
         // 清空购物车
         function clearCart() {
             if (cart.length === 0) return;
             
-            if (confirm('确定要清空购物车吗？')) {
+            if (confirm('Are you sure you want to clear the cart?')) {
                 cart = [];
                 totalPrice = 0;
                 updateCart();
-                showToast('购物车已清空');
+                showToast('Cart Cleared.');
             }
         }
         
         // 生成订单代码
         function generateOrderCode() {
             if (cart.length === 0) {
-                showToast('购物车是空的！');
+                showToast('The Cart is Empty!');
                 return;
             }
             
             const username = document.getElementById('username').value.trim();
             if (!username) {
-                showToast('请输入您的游戏ID！');
+                showToast('Please Enter your Game ID!');
                 return;
             }
             
@@ -935,8 +935,10 @@
             };
             
             // 转换为Base64编码字符串
+            // Encode to Base64 with UTF-8 support
             const orderString = JSON.stringify(order);
-            const orderCode = btoa(encodeURIComponent(orderString));
+            const orderCode =   btoa(unescape(encodeURIComponent(orderString)));
+
             
             // 显示代码
             const codeOutput = document.getElementById('code-output');
@@ -946,11 +948,11 @@
             // 自动复制到剪贴板
             navigator.clipboard.writeText(orderCode)
                 .then(() => {
-                    showToast('订单代码已生成并复制到剪贴板！');
+                    showToast('Invoice Code has been copied to clipboard');
                 })
                 .catch(err => {
-                    console.error('复制失败:', err);
-                    showToast('订单代码已生成，请手动复制！');
+                    console.error('Failed:', err);
+                    showToast('Invoice Code has been generated,please enter manually');
                 });
         }
         
@@ -969,5 +971,135 @@
             });
         });
     </script>
+<script>
+const translations = {
+    "en": {
+        "category_elytra": "ElytraSky-Kits",
+        "cart": "Cart",
+        "add_to_cart": "Add to Cart",
+        "game_id": "Game ID:",
+        "enter_game_id": "Enter your game ID"
+    },
+    "zh-CN": {
+        "category_elytra": "ElytraSky-Kits",
+        "cart": "购物车",
+        "add_to_cart": "加入购物车",
+        "game_id": "游戏ID:",
+        "enter_game_id": "请输入您的游戏ID"
+    },
+    "zh-TW": {
+        "category_elytra": "ElytraSky-Kits",
+        "cart": "購物車",
+        "add_to_cart": "加入購物車",
+        "game_id": "遊戲ID:",
+        "enter_game_id": "請輸入您的遊戲ID"
+    }
+};
+
+function setLanguage(lang) {
+    const dict = translations[lang] || translations["zh-TW"];
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) el.textContent = dict[key];
+    });
+    document.querySelectorAll("[data-i18n-btn]").forEach(btn => {
+        const key = btn.getAttribute("data-i18n-btn");
+        if (dict[key]) btn.textContent = dict[key];
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(input => {
+        const key = input.getAttribute("data-i18n-placeholder");
+        if (dict[key]) input.placeholder = dict[key];
+    });
+}
+
+document.getElementById("language-select").addEventListener("change", e => {
+    const lang = e.target.value;
+    setLanguage(lang);
+    localStorage.setItem("selectedLang", lang);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const savedLang = localStorage.getItem("selectedLang") || "zh-TW";
+    document.getElementById("language-select").value = savedLang;
+    setLanguage(savedLang);
+});
+</script><script>
+document.getElementById("language-select").addEventListener("change", e => {
+    document.documentElement.setAttribute("lang", e.target.value);
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const savedLang = localStorage.getItem("selectedLang") || "zh-TW";
+    document.documentElement.setAttribute("lang", savedLang);
+});
+</script>
+<footer style="margin-top: 40px; padding: 30px; background-color: #111; color: white; text-align: center; font-size: 14px; line-height: 1.8;">
+<div data-lang="en">
+    2021-2025 ElytraSky(TC).<br/>
+    Customer Service: 2856643485<br/>
+    Support: 1029533840<br/>
+    China Payment methods (Alipay, WeChat Pay) is provided by sth333.<br/>
+    USDT-TRC20 is provided by CastoriFET.<br/>
+    UI designed by xiaobi_WK, modified by CastoriFET.<br/>
+    2184 Design Ant Rd,Shimo Kitazawa,Tokyo,Japan.<br/>
+    Postal Code:114514 <br/>
+    Contact:WhatsApp +65 8813 7186,QQ 2338406109<br/>
+    返せ！返せ！ボクの家族を悪の手から未来の欠片を取り返すボクの使命だこの身の全てが滅びようとも返せ！返せ！ボクの家族を0419  必ず見つけだしてまた幸せな温もりをこの鉄の肌で感じたい! <br/>
+    NO REFUND FOR ALL PURCHASED KITS!!<br/>
+    JOIN GROUP TO ENJOY 50% DISCOUNT!<br/>
+</div>
+<div data-lang="zh-CN">
+    2021-2025 ElytraSky(TC)。<br/>
+    客服：2856643485<br/>
+    支持：1029533840<br/>
+    中国支付方式（支付宝、微信支付）由 sth333 提供。<br/>
+    USDT-TRC20 由 CastoriFET 提供。<br/>
+    界面由 xiaobi_WK 设计，CastoriFET 修改。<br/>
+</div>
+<div data-lang="zh-TW">
+    2021-2025 ElytraSky(TC)。<br/>
+    客服：2856643485<br/>
+    支援：1029533840<br/>
+    中國支付方式（支付寶、微信支付）由 sth333 提供。<br/>
+    USDT-TRC20 由 CastoriFET 提供。<br/>
+    介面由 xiaobi_WK 設計，CastoriFET 修改。<br/>
+</div>
+<div style="margin-top: 10px;">
+<label data-lang="en">Currency:</label>
+<label data-lang="zh-CN">货币：</label>
+<label data-lang="zh-TW">貨幣：</label>
+<select id="currency-select" style="margin-left: 8px; padding: 4px 8px;">
+<option value="CNY">CNY (¥)</option>
+<option value="USD">USD ($)</option>
+<option value="EUR">EUR (€)</option>
+<option value="SGD">SGD (S$)</option>
+</select>
+</div>
+</footer>
+
+<script>
+  const exchangeRates = {'CNY': 1.0, 'USD': 0.14, 'EUR': 0.13, 'SGD': 0.19};
+  const currencySymbols = {'CNY': '¥', 'USD': '$', 'EUR': '€', 'SGD': 'S$'};
+  const defaultCurrency = "CNY";
+  let currentCurrency = defaultCurrency;
+
+  document.getElementById('currency-select').addEventListener('change', function () {
+    const selected = this.value;
+    convertPrices(selected);
+  });
+
+  function convertPrices(newCurrency) {
+    const priceElements = document.querySelectorAll('.price[data-base-price]');
+    priceElements.forEach(el => {
+      const basePrice = parseFloat(el.getAttribute('data-base-price'));
+      const converted = basePrice * exchangeRates[newCurrency];
+      el.innerText = currencySymbols[newCurrency] + converted.toFixed(2);
+    });
+    currentCurrency = newCurrency;
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    convertPrices(defaultCurrency);
+  });
+</script>
 </body>
 </html>
