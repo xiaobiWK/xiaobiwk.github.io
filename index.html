@@ -462,6 +462,7 @@ html[lang="zh-TW"] [data-lang="zh-TW"] {
 <a href="#misc-kits">雜項kit</a>
 <a href="#banner-kits">旗幟類kit</a>
 <a href="#forbidden-kits">違禁品kit</a>
+<a href="javascript:void(0)" id="aboutBtn">About</a>
 <select id="language-select" style="border: 1px solid var(--primary-color); border-radius: 20px; background: transparent; color: var(--primary-color); padding: 6px 12px; font-size: 0.9em;"><option value="en">English</option><option value="zh-TW">繁體中文</option><option value="zh-CN">简体中文</option></select></div>
 </nav>
 <div class="container">
@@ -1101,5 +1102,92 @@ document.addEventListener("DOMContentLoaded", () => {
     convertPrices(defaultCurrency);
   });
 </script>
+
+<!-- About Modal -->
+<style>
+#aboutModal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 2000;
+  align-items: center; justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#aboutModal.show {
+  display: flex;
+  opacity: 1;
+}
+#aboutContent {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  text-align: center;
+}
+#aboutContent h2 { margin-bottom: 10px; color: #4CAF50; }
+#aboutContent p { margin: 10px 0; line-height: 1.5; }
+#closeAboutBtn {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+</style>
+<div id="aboutModal">
+  <div id="aboutContent">
+    <h2>
+      <span data-lang="en">About ElytraSky</span>
+      <span data-lang="zh-CN">关于 ElytraSky</span>
+      <span data-lang="zh-TW">關於 ElytraSky</span>
+    </h2>
+    <p data-lang="en">
+      ElytraSky is a 2B2T organization founded in 2021. We provide high-quality kits and support for new players.<br/>
+      Our kits are affordable and delivered by members when available.<br/>
+      If you are interested, join our organization. Group No.: 1029533840
+    </p>
+    <p data-lang="zh-CN">
+      ElytraSky 是一个成立于 2021 年的 2B2T 组织。我们为新玩家提供高质量的套装和支持。<br/>
+      我们的套装价格实惠，由成员在有空时发放。<br/>
+      如果你感兴趣，欢迎加入。QQ群号：1029533840
+    </p>
+    <p data-lang="zh-TW">
+      ElytraSky 是一個成立於 2021 年的 2B2T 組織。我們為新玩家提供高品質的套裝與支援。<br/>
+      我們的套裝價格實惠，將由成員在有空時發放。<br/>
+      如果你感興趣，歡迎加入。群號：1029533840
+    </p>
+    <button id="closeAboutBtn">
+      <span data-lang="en">OK</span>
+      <span data-lang="zh-CN">确定</span>
+      <span data-lang="zh-TW">確定</span>
+    </button>
+  </div>
+</div>
+<script>
+  const aboutModal = document.getElementById("aboutModal");
+  const aboutBtn = document.getElementById("aboutBtn");
+  const closeAboutBtn = document.getElementById("closeAboutBtn");
+
+  aboutBtn.addEventListener("click", () => {
+    aboutModal.style.display = "flex";
+    setTimeout(() => aboutModal.classList.add("show"), 10);
+  });
+  closeAboutBtn.addEventListener("click", () => {
+    aboutModal.classList.remove("show");
+    setTimeout(() => { aboutModal.style.display = "none"; }, 300);
+  });
+  aboutModal.addEventListener("click", (e) => {
+    if (e.target === aboutModal) {
+      closeAboutBtn.click();
+    }
+  });
+</script>
+
 </body>
 </html>
