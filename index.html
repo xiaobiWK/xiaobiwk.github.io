@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div id="header-container"></div>
+</head>
+<body>
+    <div class="toast" id="toast"></div>
+    
+    <div id="navbar-container"></div>
+    
+    <div class="container">
+        <h1>ElytraSky(TC) Online Webstore</h1>
+        
+        <div id="products-container"></div>
+    </div>
+    
+    <div id="cart-container-full"></div>
+    
+    <div id="footer-container"></div>
+    
+    <div id="about-modal-container"></div>
+    
+    <script src="scripts.js"></script>
+    <script>
+        // 加载所有部分
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHTML('header-container', 'header.html');
+            loadHTML('navbar-container', 'navbar.html');
+            loadHTML('products-container', 'products.html');
+            loadHTML('cart-container-full', 'cart.html');
+            loadHTML('footer-container', 'footer.html');
+            loadHTML('about-modal-container', 'about-modal.html');
+        });
+        
+        // 加载外部HTML内容
+        function loadHTML(elementId, filePath) {
+            fetch(filePath)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                    // 如果是样式文件，需要额外处理
+                    if (filePath === 'styles.css') {
+                        const style = document.createElement('style');
+                        style.textContent = data;
+                        document.head.appendChild(style);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading ' + filePath + ':', error);
+                });
+        }
+    </script>
+</body>
+</html>
