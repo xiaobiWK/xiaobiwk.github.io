@@ -21,34 +21,5 @@
     <div id="about-modal-container"></div>
     
     <script src="scripts.js"></script>
-    <script>
-        // 加载所有部分
-        document.addEventListener('DOMContentLoaded', function() {
-            loadHTML('header-container', 'header.html');
-            loadHTML('navbar-container', 'navbar.html');
-            loadHTML('products-container', 'products.html');
-            loadHTML('cart-container-full', 'cart.html');
-            loadHTML('footer-container', 'footer.html');
-            loadHTML('about-modal-container', 'about-modal.html');
-        });
-        
-        // 加载外部HTML内容
-        function loadHTML(elementId, filePath) {
-            fetch(filePath)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById(elementId).innerHTML = data;
-                    // 如果是样式文件，需要额外处理
-                    if (filePath === 'styles.css') {
-                        const style = document.createElement('style');
-                        style.textContent = data;
-                        document.head.appendChild(style);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error loading ' + filePath + ':', error);
-                });
-        }
-    </script>
 </body>
 </html>
