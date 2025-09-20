@@ -215,7 +215,7 @@ function updateCart() {
                         <button class="quantity-btn plus" data-index="${index}">+</button>
                     </div>
                 </div>
-                <button class="remove-btn" data-index="${index}">移除</button>
+                <button class="remove-btn" data-index="${index}">Remove</button>
             `;
             cartItemsElement.appendChild(itemElement);
         });
@@ -428,5 +428,6 @@ function initApp() {
 
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', initApp);
+
 
 
