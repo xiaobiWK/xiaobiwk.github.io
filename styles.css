@@ -431,4 +431,28 @@ h1 {
         padding: 4px 8px;
         font-size: 0.8em;
     }
+
+}
+
+.nav-links a span[data-lang] {
+    display: none;
+}
+
+.nav-links a span[data-lang="en"],
+.nav-links a span[data-lang="zh-CN"], 
+.nav-links a span[data-lang="zh-TW"] {
+    display: inline;
+}
+
+/* 确保语言选择器正确显示当前语言 */
+html[lang="en"] .nav-links a span[data-lang="en"],
+html[lang="zh-CN"] .nav-links a span[data-lang="zh-CN"],
+html[lang="zh-TW"] .nav-links a span[data-lang="zh-TW"] {
+    display: inline;
+}
+
+html[lang="en"] .nav-links a span:not([data-lang="en"]),
+html[lang="zh-CN"] .nav-links a span:not([data-lang="zh-CN"]),
+html[lang="zh-TW"] .nav-links a span:not([data-lang="zh-TW"]) {
+    display: none;
 }
