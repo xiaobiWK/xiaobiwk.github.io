@@ -192,8 +192,7 @@ function initQuantityControls() {
 
 // 修改addToCart函数
 function addToCart(id, name, price, button) {
-    const quantityInput = document.querySelector(`.quantity-input[data-id="${id}"]`);
-    const quantity = quantityInput ? parseInt(quantityInput.value) || 1 : 1;
+    const quantity = 1; // 默认数量为1
     
     button.classList.add('clicked');
     setTimeout(() => {
@@ -201,11 +200,7 @@ function addToCart(id, name, price, button) {
     }, 1000);
     
     // 创建动画效果
-    for (let i = 0; i < quantity; i++) {
-        setTimeout(() => {
-            createPlusOneAnimation(button);
-        }, i * 100);
-    }
+    createPlusOneAnimation(button);
     
     const existingItem = cart.find(item => item.id === id);
     if (existingItem) {
@@ -409,9 +404,10 @@ function convertPrices(newCurrency) {
 
 // 初始化添加到购物车按钮
 function initAddToCartButtons() {
-    // 使用事件委托处理动态加载的按钮
+    // 修复：使用正确的事件委托处理动态加载的按钮
     document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('add-to-cart')) {
+        // 修复：使用正确的类名选择器
+        if (e.target.classList.contains('add-to-cart-btn')) {
             const id = e.target.getAttribute('data-id');
             const name = e.target.getAttribute('data-name');
             const price = e.target.getAttribute('data-price');
