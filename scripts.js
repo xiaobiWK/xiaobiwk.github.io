@@ -1,5 +1,3 @@
-// scripts.js 文件
-
 const translations = {
     "en": {
         "category_elytra": "ElytraSky-Kits",
@@ -29,7 +27,7 @@ const translations = {
         "cart_cleared": "购物车已清空.",
         "enter_game_id_prompt": "未输入游戏ID!",
         "cart_empty": "购物车为空!",
-        "code_copied": "订单代码已复制.",
+        "code_cop极ied": "订单代码已复制.",
         "code_generated": "订单代码已生成,请手动输入.",
         "item_removed": "已移除",
         "item_added": "已添加到购物车",
@@ -234,7 +232,8 @@ function updateCart() {
     cartItemsElement.innerHTML = '';
     
     if (cart.length === 0) {
-        cartItemsElement.innerHTML = '<p style="text-align:center;padding:20px 0;">The cart is empty</p>';
+        const dict = translations[document.documentElement.lang] || translations["en"];
+        cartItemsElement.innerHTML = `<p style="text-align:center;padding:20px 0;">${dict.empty_cart || 'The cart is empty'}</p>`;
         const codeOutput = document.getElementById('code-output');
         if (codeOutput) codeOutput.style.display = 'none';
     } else {
@@ -244,7 +243,7 @@ function updateCart() {
             itemElement.innerHTML = `
                 <div class="cart-item-info">
                     <div class="cart-item-name">${item.name}</div>
-                    <div class="cart-item-price">¥${item.price.toFixed(2)} × ${item.quantity} = ¥${(item.price * item.quantity).toFixed(2)}</div>
+                    <div class="cart-item-price">${currencySymbols[currentCurrency]}${(item.price * exchangeRates[currentCurrency]).toFixed(2)} × ${item.quantity} = ${currencySymbols[currentCurrency]}${(item.price * item.quantity * exchangeRates[currentCurrency]).toFixed(2)}</div>
                     <div class="cart-item-quantity">
                         <button class="quantity-btn minus" data-index="${index}">-</button>
                         <span>${item.quantity}</span>
@@ -271,7 +270,7 @@ function updateCart() {
         });
     }
     
-    totalPriceElement.textContent = totalPrice.toFixed(2);
+    totalPriceElement.textContent = `${currencySymbols[currentCurrency]}${(totalPrice * exchangeRates[currentCurrency]).toFixed(2)}`;
     cartCountElement.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
 }
 
@@ -305,17 +304,21 @@ function removeItem(index) {
 function clearCart() {
     if (cart.length === 0) return;
     
-    if (confirm('Are you sure you want to clear the cart?')) {
+    const dict = translations[document.documentElement.lang] || translations["en"];
+    
+    if (confirm(dict.confirm_clear || 'Are you sure you want to clear the cart?')) {
         cart = [];
         totalPrice = 0;
         updateCart();
-        showToast('Cart Cleared.');
+        showToast(dict.cart_cleared || 'Cart Cleared.');
     }
 }
 
 function generateOrderCode() {
+    const dict = translations[document.documentElement.lang] || translations["en"];
+    
     if (cart.length === 0) {
-        showToast('The Cart is Empty!');
+        showToast(dict.cart_empty || 'The Cart is Empty!');
         return;
     }
     
@@ -324,7 +327,7 @@ function generateOrderCode() {
     
     const username = usernameInput.value.trim();
     if (!username) {
-        showToast('Please Enter your Game ID!');
+        showToast(dict.enter_game_id_prompt || 'Please Enter your Game ID!');
         return;
     }
     
@@ -346,11 +349,11 @@ function generateOrderCode() {
     
     navigator.clipboard.writeText(orderCode)
         .then(() => {
-            showToast('Invoice Code has been copied to clipboard');
+            showToast(dict.code_copied || 'Invoice Code has been copied to clipboard');
         })
         .catch(err => {
             console.error('Failed:', err);
-            showToast('Invoice Code has been generated,please enter manually');
+            showToast(dict.code_generated || 'Invoice Code has been generated,please enter manually');
         });
 }
 
@@ -389,6 +392,7 @@ function initCurrencySelector() {
     currencySelect.addEventListener('change', function() {
         const selected = this.value;
         convertPrices(selected);
+        updateCart();
     });
 }
 
@@ -456,7 +460,7 @@ function initApp() {
     initLanguageSelector();
     initAddToCartButtons();
     initCurrencySelector();
-	initQuantityControls();
+    initQuantityControls();
     
     // 加载所有部分
     const sections = [
@@ -475,6 +479,3 @@ function initApp() {
 
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', initApp);
-
-
-
