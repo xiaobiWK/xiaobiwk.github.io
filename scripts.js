@@ -158,7 +158,16 @@ function initAboutModal() {
 function createPlusOneAnimation(button) {
     const plusOne = document.createElement('div');
     plusOne.className = 'plus-one';
-    plusOne.textContent = '+1';
+    
+    // 根据当前语言显示不同的文本
+    const lang = document.documentElement.lang;
+    if (lang === 'zh-CN') {
+        plusOne.textContent = '+1';
+    } else if (lang === 'zh-TW') {
+        plusOne.textContent = '+1';
+    } else {
+        plusOne.textContent = '+1';
+    }
     
     const productCard = button.closest('.product');
     productCard.appendChild(plusOne);
@@ -170,29 +179,61 @@ function createPlusOneAnimation(button) {
 
 function initQuantityControls() {
     document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('quantity-btn')) {
-            const btn = e.target;
-            const id = btn.getAttribute('data-id');
-            const input = document.querySelector(`.quantity-input[data-id="${id}"]`);
+    const addToCartBtn = e.target.closest('.add-to-cart-btn');
+    
+    // 处理添加到购物车按钮点击
+    if (addToCartBtn) {
+        const id = addToCartBtn.getAttribute('data-id');
+        const name = addToCartBtn.getAttribute('data-name');
+        const price = addToCartBtn.getAttribute('data-price');
+        addToCart(id, name, price, addToCartBtn);
+        return;
+    }
+    
+    // 处理数量选择器的显示/隐藏切换
+    if (e.target.classList.contains('add-to-cart-btn')) {
+        const productControls = e.target.closest('.product-controls');
+        if (productControls) {
+            const addButton = productControls.querySelector('.add-to-cart-btn');
+            const quantitySelector = productControls.querySelector('.quantity-selector');
             
-            if (!input) return;
-            
-            let value = parseInt(input.value) || 1;
+            if (addButton && quantitySelector) {
+                // 切换显示
+                addButton.style.display = 'none';
+                quantitySelector.style.display = 'flex';
+            }
+        }
+    }
+    
+    // 处理数量加减按钮
+    if (e.target.classList.contains('quantity-btn')) {
+        const btn = e.target;
+        const id = btn.getAttribute('data-id');
+        const quantitySelector = btn.closest('.quantity-selector');
+        
+        if (quantitySelector) {
+            const quantityDisplay = quantitySelector.querySelector('.quantity-display');
+            let quantity = parseInt(quantityDisplay.textContent) || 1;
             
             if (btn.classList.contains('plus')) {
-                value = Math.min(99, value + 1);
+                quantity = Math.min(99, quantity + 1);
             } else if (btn.classList.contains('minus')) {
-                value = Math.max(1, value - 1);
+                quantity = Math.max(1, quantity - 1);
             }
             
-            input.value = value;
+            quantityDisplay.textContent = quantity;
         }
-    });
+    }
+	}
+	);
 }
 
 // 修改addToCart函数
 function addToCart(id, name, price, button) {
-    const quantity = 1; // 默认数量为1
+    const productControls = button.closest('.product-controls');
+    const quantitySelector = productControls.querySelector('.quantity-selector');
+    const quantityDisplay = quantitySelector.querySelector('.quantity-display');
+    const quantity = parseInt(quantityDisplay.textContent) || 1;
     
     button.classList.add('clicked');
     setTimeout(() => {
@@ -212,10 +253,16 @@ function addToCart(id, name, price, button) {
     totalPrice += parseFloat(price) * quantity;
     updateCart();
     
+    // 重置数量选择器
+    quantityDisplay.textContent = '1';
+    quantitySelector.style.display = 'none';
+    button.style.display = 'block';
+    
     // 使用正确的翻译
     const dict = translations[document.documentElement.lang] || translations["en"];
     showToast(`${dict.item_added || 'Added'} ${name} x${quantity}`);
 }
+
 
 function updateCart() {
     const cartItemsElement = document.getElementById('cart-items');
