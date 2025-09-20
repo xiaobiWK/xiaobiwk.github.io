@@ -436,6 +436,53 @@ h1 {
     opacity: 1;
 }
 
+.product-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.add-to-cart-btn {
+    background: linear-gradient(45deg, var(--primary-color), #45a049);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s;
+    font-size: 0.95em;
+    position: relative;
+    overflow: hidden;
+}
+
+.add-to-cart-btn:hover {
+    transform: scale(1.05);
+}
+
+.add-to-cart-btn:active {
+    transform: scale(0.95);
+}
+
+.add-to-cart-btn.clicked {
+    background: linear-gradient(45deg, #45a049, #4CAF50);
+}
+
+.add-to-cart-btn.clicked::after {
+    content: "✓ 已添加";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #45a049, #4CAF50);
+}
+
 @media (max-width: 768px) {
     .products {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
