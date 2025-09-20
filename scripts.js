@@ -4,7 +4,7 @@ const translations = {
     "en": {
         "category_elytra": "ElytraSky-Kits",
         "cart": "Cart",
-        "add_to_cart": "加入购物车",
+        "add_to_cart": "Add to cart",
         "game_id": "Game ID:",
         "enter_game_id": "Please enter your game ID",
         "empty_cart": "Cart is empty!",
@@ -15,40 +15,42 @@ const translations = {
         "code_copied": "Invoice Code copied.",
         "code_generated": "Invoice Code generated,Please enter manually.",
         "item_removed": "Removed",
-        "item_added": "Added to cart"
+        "item_added": "Added to cart",
+        "confirm_remove": "Are you sure to remove this item?"
     },
     "zh-CN": {
-        // Most of the translations not used,fallback to default
         "category_elytra": "ElytraSky-Kits",
-        "cart": "Cart",
+        "cart": "购物车",
         "add_to_cart": "加入购物车",
-        "game_id": "Game ID:",
-        "enter_game_id": "Please enter your game ID",
-        "empty_cart": "Cart is empty!",
-        "confirm_clear": "Are you sure to clear the cart?",
-        "cart_cleared": "Cart Cleared.",
-        "enter_game_id_prompt": "Game ID not entered!",
-        "cart_empty": "Cart is empty!",
-        "code_copied": "Invoice Code copied.",
-        "code_generated": "Invoice Code generated,Please enter manually.",
-        "item_removed": "Removed",
-        "item_added": "Added to cart"
+        "game_id": "游戏ID:",
+        "enter_game_id": "请输入您的游戏ID",
+        "empty_cart": "购物车为空!",
+        "confirm_clear": "确定要清空购物车吗?",
+        "cart_cleared": "购物车已清空.",
+        "enter_game_id_prompt": "未输入游戏ID!",
+        "cart_empty": "购物车为空!",
+        "code_copied": "订单代码已复制.",
+        "code_generated": "订单代码已生成,请手动输入.",
+        "item_removed": "已移除",
+        "item_added": "已添加到购物车",
+        "confirm_remove": "确定要移除此商品吗?"
     },
     "zh-TW": {
         "category_elytra": "ElytraSky-Kits",
-        "cart": "Cart",
-        "add_to_cart": "加入购物车",
-        "game_id": "Game ID:",
-        "enter_game_id": "Please enter your game ID",
-        "empty_cart": "Cart is empty!",
-        "confirm_clear": "Are you sure to clear the cart?",
-        "cart_cleared": "Cart Cleared.",
-        "enter_game_id_prompt": "Game ID not entered!",
-        "cart_empty": "Cart is empty!",
-        "code_copied": "Invoice Code copied.",
-        "code_generated": "Invoice Code generated,Please enter manually.",
-        "item_removed": "Removed",
-        "item_added": "Added to cart"
+        "cart": "購物車",
+        "add_to_cart": "加入購物車",
+        "game_id": "遊戲ID:",
+        "enter_game_id": "請輸入您的遊戲ID",
+        "empty_cart": "購物車為空!",
+        "confirm_clear": "確定要清空購物車嗎?",
+        "cart_cleared": "購物車已清空.",
+        "enter_game_id_prompt": "未輸入遊戲ID!",
+        "cart_empty": "購物車為空!",
+        "code_copied": "訂單代碼已複製.",
+        "code_generated": "訂單代碼已生成,請手動輸入.",
+        "item_removed": "已移除",
+        "item_added": "已添加到購物車",
+        "confirm_remove": "確定要移除此商品嗎?"
     }
 };
 
@@ -168,24 +170,58 @@ function createPlusOneAnimation(button) {
     }, 1000);
 }
 
+function initQuantityControls() {
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('quantity-btn')) {
+            const btn = e.target;
+            const id = btn.getAttribute('data-id');
+            const input = document.querySelector(`.quantity-input[data-id="${id}"]`);
+            
+            if (!input) return;
+            
+            let value = parseInt(input.value) || 1;
+            
+            if (btn.classList.contains('plus')) {
+                value = Math.min(99, value + 1);
+            } else if (btn.classList.contains('minus')) {
+                value = Math.max(1, value - 1);
+            }
+            
+            input.value = value;
+        }
+    });
+}
+
+// 修改addToCart函数
 function addToCart(id, name, price, button) {
+    const quantityInput = document.querySelector(`.quantity-input[data-id="${id}"]`);
+    const quantity = quantityInput ? parseInt(quantityInput.value) || 1 : 1;
+    
     button.classList.add('clicked');
     setTimeout(() => {
         button.classList.remove('clicked');
     }, 1000);
     
-    createPlusOneAnimation(button);
+    // 创建动画效果
+    for (let i = 0; i < quantity; i++) {
+        setTimeout(() => {
+            createPlusOneAnimation(button);
+        }, i * 100);
+    }
     
     const existingItem = cart.find(item => item.id === id);
     if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity += quantity;
     } else {
-        cart.push({ id, name, price: parseFloat(price), quantity: 1 });
+        cart.push({ id, name, price: parseFloat(price), quantity });
     }
     
-    totalPrice += parseFloat(price);
+    totalPrice += parseFloat(price) * quantity;
     updateCart();
-    showToast(`Added ${name} to the cart`);
+    
+    // 使用正确的翻译
+    const dict = translations[document.documentElement.lang] || translations["en"];
+    showToast(`${dict.item_added || 'Added'} ${name} x${quantity}`);
 }
 
 function updateCart() {
@@ -241,19 +277,29 @@ function updateCart() {
 
 function updateQuantity(index, change) {
     const item = cart[index];
-    if (item.quantity + change < 1) return;
+    const newQuantity = item.quantity + change;
     
-    item.quantity += change;
-    totalPrice += item.price * change;
+    if (newQuantity < 1) {
+        removeItem(index);
+        return;
+    }
+    
+    const quantityChange = change;
+    item.quantity = newQuantity;
+    totalPrice += item.price * quantityChange;
     updateCart();
 }
 
 function removeItem(index) {
     const item = cart[index];
-    totalPrice -= item.price * item.quantity;
-    cart.splice(index, 1);
-    updateCart();
-    showToast(`Removed ${item.name}`);
+    const dict = translations[document.documentElement.lang] || translations["en"];
+    
+    if (confirm(dict.confirm_remove || 'Are you sure to remove this item?')) {
+        totalPrice -= item.price * item.quantity;
+        cart.splice(index, 1);
+        updateCart();
+        showToast(`${dict.item_removed || 'Removed'} ${item.name}`);
+    }
 }
 
 function clearCart() {
@@ -410,6 +456,7 @@ function initApp() {
     initLanguageSelector();
     initAddToCartButtons();
     initCurrencySelector();
+	initQuantityControls();
     
     // 加载所有部分
     const sections = [
