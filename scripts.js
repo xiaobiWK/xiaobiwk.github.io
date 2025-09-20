@@ -6,21 +6,48 @@ const translations = {
         "cart": "Cart",
         "add_to_cart": "Add to Cart",
         "game_id": "Game ID:",
-        "enter_game_id": "Enter your game ID"
+        "enter_game_id": "Enter your game ID",
+        "empty_cart": "The cart is empty",
+        "confirm_clear": "Are you sure you want to clear the cart?",
+        "cart_cleared": "Cart Cleared.",
+        "enter_game_id_prompt": "Please Enter your Game ID!",
+        "cart_empty": "The Cart is Empty!",
+        "code_copied": "Invoice Code has been copied to clipboard",
+        "code_generated": "Invoice Code has been generated,please enter manually",
+        "item_removed": "Removed",
+        "item_added": "Added to the cart"
     },
     "zh-CN": {
         "category_elytra": "ElytraSky-Kits",
         "cart": "购物车",
         "add_to_cart": "加入购物车",
         "game_id": "游戏ID:",
-        "enter_game_id": "请输入您的游戏ID"
+        "enter_game_id": "请输入您的游戏ID",
+        "empty_cart": "购物车为空",
+        "confirm_clear": "确定要清空购物车吗？",
+        "cart_cleared": "购物车已清空",
+        "enter_game_id_prompt": "请输入您的游戏ID！",
+        "cart_empty": "购物车为空！",
+        "code_copied": "订单代码已复制到剪贴板",
+        "code_generated": "订单代码已生成，请手动输入",
+        "item_removed": "已移除",
+        "item_added": "已添加到购物车"
     },
     "zh-TW": {
         "category_elytra": "ElytraSky-Kits",
         "add_to_cart": "加入購物車",
         "cart": "購物車",
         "game_id": "遊戲ID:",
-        "enter_game_id": "請輸入您的遊戲ID"
+        "enter_game_id": "請輸入您的遊戲ID",
+        "empty_cart": "購物車為空",
+        "confirm_clear": "確定要清空購物車嗎？",
+        "cart_cleared": "購物車已清空",
+        "enter_game_id_prompt": "請輸入您的遊戲ID！",
+        "cart_empty": "購物車為空！",
+        "code_copied": "訂單代碼已複製到剪貼板",
+        "code_generated": "訂單代碼已生成，請手動輸入",
+        "item_removed": "已移除",
+        "item_added": "已添加到購物車"
     }
 };
 
@@ -63,6 +90,18 @@ function setLanguage(lang) {
         if (dict[key]) input.placeholder = dict[key];
     });
     
+    // 更新导航栏中的多语言文本
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        const spans = link.querySelectorAll('span[data-lang]');
+        spans.forEach(span => {
+            if (span.getAttribute('data-lang') === lang) {
+                span.style.display = 'inline';
+            } else {
+                span.style.display = 'none';
+            }
+        });
+    });
+    
     // 更新HTML lang属性
     document.documentElement.setAttribute("lang", lang);
     
@@ -80,7 +119,7 @@ function initLanguageSelector() {
     languageSelect.value = savedLang;
     setLanguage(savedLang);
     
-    // 绑定change事件（使用事件委托）
+    // 绑定change事件
     languageSelect.addEventListener('change', function(e) {
         const lang = e.target.value;
         setLanguage(lang);
@@ -387,3 +426,4 @@ function initApp() {
 
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', initApp);
+
