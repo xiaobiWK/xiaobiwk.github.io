@@ -483,6 +483,43 @@ h1 {
     background: linear-gradient(45deg, #45a049, #4CAF50);
 }
 
+.add-to-cart-btn {
+    pointer-events: auto;
+}
+
+.add-to-cart-btn * {
+    pointer-events: none;
+}
+
+/* 数量选择器样式 */
+.quantity-selector {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-display {
+    min-width: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
 @media (max-width: 768px) {
     .products {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
