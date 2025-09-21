@@ -24,7 +24,7 @@ body {
     top: 0;
     width: 100%;
     background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(极px);
+    backdrop-filter: blur(10px);
     padding: 12px 0;
     z-index: 1000;
     display: flex;
@@ -35,7 +35,7 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 12极;
+    gap: 12px;
     flex-wrap: wrap;
     max-width: 90%;
     pointer-events: auto;
@@ -44,7 +44,7 @@ body {
 .nav-links a {
     color: var(--primary-color);
     text-decoration: none;
-    padding: 6px 12px;
+    padding: 极6px 12px;
     border-radius: 20px;
     transition: all 0.3s;
     border: 1px solid var(--primary-color);
@@ -69,7 +69,7 @@ h1 {
     color: var(--primary-color);
     text-align: center;
     margin-bottom: 25px;
-    font-size: 1.8em;
+    font-size: 1.极8em;
 }
 
 .category {
@@ -103,7 +103,7 @@ h1 {
 
 .product:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0极,0,0.3);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
 .product-image-container {
@@ -114,8 +114,8 @@ h1 {
     margin-bottom: 12px;
     display: flex;
     align-items: center;
-极 justify-content: center;
-    background-color: #2a极2a;
+    justify-content: center;
+    background-color: #2a2a2a;
 }
 
 .product-image {
@@ -137,16 +137,7 @@ h1 {
     margin: 10px 0;
 }
 
-.product-controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-/* 统一使用 .add-to-cart-btn */
-.add-to-cart-btn {
+.add-to-cart {
     background: linear-gradient(45deg, var(--primary-color), #45a049);
     color: white;
     border: none;
@@ -154,27 +145,26 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
-    transition: all 0.3s;
+    transition: all 极0.3s;
     font-size: 0.95em;
     position: relative;
     overflow: hidden;
-    pointer-events: auto;
 }
 
-.add-to-cart-btn:hover {
+.add-to-cart:hover {
     transform: scale(1.05);
 }
 
-.add-to-cart-btn:active {
+.add-to-cart:active {
     transform: scale(0.95);
 }
 
-.add-to-cart-btn.clicked {
+.add-to-cart.clicked {
     background: linear-gradient(45deg, #45a049, #4CAF50);
 }
 
-.add-to-cart-btn.clicked::after {
-    content: "✓ 已添加";
+.add极-to-cart.clicked::after {
+    content: "✓ Added";
     position: absolute;
     top: 0;
     left: 0;
@@ -184,39 +174,6 @@ h1 {
     align-items: center;
     justify-content: center;
     background: linear-gradient(45deg, #45a049, #4CAF50);
-}
-
-.add-to-cart-btn * {
-    pointer-events: none;
-}
-
-/* 数量选择器样式 */
-.quantity-selector {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-}
-
-.quantity-btn {
-    width: 30px;
-    height: 30px;
-    border: 1px solid var(--primary-color);
-    background: transparent;
-    color: var(--primary-color);
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.quantity-display {
-    min-width: 30px;
-    text-align: center;
-    font-weight: bold;
 }
 
 .plus-one {
@@ -266,7 +223,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
-    background极: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
     cursor: pointer;
 }
 
@@ -287,9 +244,9 @@ h1 {
 }
 
 .cart-toggle {
-    color: var(--primary-color);
+    color:极 var(--primary-color);
     font-size: 1.2em;
-    transition: transform 0.极s;
+    transition: transform 0.3s;
 }
 
 .cart-container.expanded .cart-toggle {
@@ -330,7 +287,7 @@ h1 {
     margin: 5px 0;
 }
 
-.cart-item-quantity .quantity-btn {
+.quantity-btn {
     background: var(--border-color);
     color: var(--text-color);
     border: none;
@@ -355,7 +312,7 @@ h1 {
     margin-left: 10px;
 }
 
-.cart-t极tal {
+.cart-total {
     font-weight: bold;
     text-align: right;
     margin-top: 15px;
@@ -402,11 +359,11 @@ h1 {
 .code-output {
     margin-top: 15px;
     padding: 12px;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0极,0,0.3);
     border-radius: 5px;
     word-break: break-all;
-    font-family: monospace;
-    font-size: 0.9em;
+   极 font-family: monospace;
+    font-size: 0.9极em;
     display: none;
 }
 
@@ -425,14 +382,14 @@ h1 {
     padding: 8px 12px;
     border-radius: 5px;
     border: 1px solid var(--border-color);
-    background: rgba(0,0,0,极.3);
+    background: rgba(0,0,0,0.3);
     color: var(--text-color);
 }
 
 .toast {
     position: fixed;
     top: 20px;
-    left极: 50%;
+    left: 50%;
     transform: translateX(-50%);
     background: rgba(0,0,0,0.8);
     color: white;
@@ -445,29 +402,6 @@ h1 {
 
 .toast.show {
     opacity: 1;
-}
-
-/* 语言选择器样式 */
-.nav-links a span[data-lang] {
-    display: none;
-}
-
-.nav-links a span[data-lang="en"],
-.nav-links a span[data-lang="zh-CN"], 
-.nav-links a span[data-lang="zh-TW"] {
-    display: inline;
-}
-
-html[lang="en"] .nav-links a span[data-lang="en"],
-html[lang="zh-CN"] .nav-links a span[data-lang="zh-CN"],
-html[lang="zh-TW"] .nav-links a span[data-lang="zh-TW"] {
-    display: inline;
-}
-
-html[lang="en"] .nav-links a span:not([data-lang="en"]),
-html[lang="zh-CN"] .nav-links a span:not([data-lang="zh-CN"]),
-html[lang="zh-TW"] .nav-links a span:not([data-lang="zh-TW"]) {
-    display: none;
 }
 
 @media (max-width: 768px) {
@@ -484,7 +418,7 @@ html[lang="zh-TW"] .nav-links a span:not([data-lang="zh-TW"]) {
         min-height: 36px;
     }
     
-    .add-to-cart-btn {
+    .add-to-cart {
         padding: 6px 12px;
         font-size: 0.9em;
     }
@@ -497,4 +431,28 @@ html[lang="zh-TW"] .nav-links a span:not([data-lang="zh-TW"]) {
         padding: 4px 8px;
         font-size: 0.8em;
     }
+
+}
+
+.nav-links a span[data-lang] {
+    display: none;
+}
+
+.nav-links a span[data-lang="en"],
+.nav-links a span[data-lang="zh-CN"], 
+.nav-links a span[data-lang="zh-TW"] {
+    display: inline;
+}
+
+/* 确保语言选择器正确显示当前语言 */
+html[lang="en"] .nav-links a span[data-lang="en"],
+html[lang="zh-CN"] .nav-links a span[data-lang="zh-CN"],
+html[lang="zh-TW"] .nav-links a span[data-lang="zh-TW"] {
+    display: inline;
+}
+
+html[lang="en"] .nav-links a span:not([data-lang="en"]),
+html[lang="zh-CN"] .nav-links a span:not([data-lang="zh-CN"]),
+html[lang="zh-TW"] .nav-links a span:not([data-lang="zh-TW"]) {
+    display: none;
 }
