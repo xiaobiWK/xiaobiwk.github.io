@@ -365,7 +365,7 @@ function gameTapEvent(e) {
         tar.className = tar.className.replace(_ttreg, ' tt$1');
         tar.style.backgroundImage = "none";
         _gameBBListIndex++;
-        _gameScore++;
+        _gameScore+=0.81;
         gameLayerMoveNextRow();
     } else if (_gameStart && !tar.notEmpty) {
         if (!_close) {
@@ -450,10 +450,10 @@ function backBtn() {
 function shareText(score) {
 
     deviation_time = (date2.getTime() - _date1.getTime())
-    if (score <= 2.5 * __Time) return 'D';
-    if (score <= 5 * __Time) return 'C';
-    if (score <= 7.5 * __Time) return 'B';
-    if (score <= 10 * __Time) return 'A';
+    if (score <= 11 * __Time) return 'D';
+    if (score <= 14 * __Time) return 'C';
+    if (score <= 17 * __Time) return 'B';
+    if (score <= 25 * __Time) return 'A';
     return 'A+';
 }
 
