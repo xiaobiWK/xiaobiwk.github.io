@@ -209,7 +209,7 @@ function gameTime() {
 }
 
 function creatTimeText(n) {
-    return '&nbsp;Time Remaining:' + n;
+    return '&nbsp;Time Remaining:' + n + '&nbsp;Score:' + _gameScore;
 }
 
 let _ttreg = / t{1,2}(\d+)/,
@@ -365,7 +365,7 @@ function gameTapEvent(e) {
         tar.className = tar.className.replace(_ttreg, ' tt$1');
         tar.style.backgroundImage = "none";
         _gameBBListIndex++;
-        _gameScore+=0.81;
+        _gameScore+=1;
         gameLayerMoveNextRow();
     } else if (_gameStart && !tar.notEmpty) {
         if (!_close) {
