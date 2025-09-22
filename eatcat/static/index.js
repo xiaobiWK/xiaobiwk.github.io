@@ -452,12 +452,12 @@ function shareText(score) {
     deviation_time = (date2.getTime() - _date1.getTime())
     if (score <= 40) return 'D';
     if (score <= 56) return 'C';
-    if (score <= 72) return 'B';
-    if (score <= 106) return 'A';
-    if (score <= 180) return 'AA';
-    if (score <= 240) return 'EX';
-    if (score <= 320) return 'EX+';
-    if (score >= 870) return 'EX++';
+    if (score <= 128) return 'B';
+    if (score <= 176) return 'A';
+    if (score <= 260) return 'AA';
+    if (score <= 380) return 'EX';
+    if (score <= 460) return 'EX+';
+    if (score >= 1200) return 'EX++';
     return 'PM';
 }
 
