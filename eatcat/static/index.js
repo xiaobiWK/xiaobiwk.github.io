@@ -209,7 +209,7 @@ function gameTime() {
 }
 
 function creatTimeText(n) {
-    return '&nbsp;Time Remaining:' + n + '&nbsp;Score:' + _gameScore;
+    return n + '&nbsp;Score:' + _gameScore;
 }
 
 let _ttreg = / t{1,2}(\d+)/,
