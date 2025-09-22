@@ -10,7 +10,7 @@ let key = ['!'];
 let chs = ['@', '!', '#', '&', '+', '-', '%', '*'];
 let len = key.length;
 let hide = false;
-let __Time = 20;
+let __Time = 60;
 let __k = 4;
 let _close = false;
 let _fsj = false;
@@ -450,11 +450,15 @@ function backBtn() {
 function shareText(score) {
 
     deviation_time = (date2.getTime() - _date1.getTime())
-    if (score <= 11 * __Time) return 'D';
-    if (score <= 14 * __Time) return 'C';
-    if (score <= 17 * __Time) return 'B';
-    if (score <= 25 * __Time) return 'A';
-    return 'A+';
+    if (score <= 40) return 'D';
+    if (score <= 56) return 'C';
+    if (score <= 72) return 'B';
+    if (score <= 106) return 'A';
+    if (score <= 180) return 'AA';
+    if (score <= 240) return 'EX';
+    if (score <= 320) return 'EX+';
+    if (score >= 870) return 'EX++';
+    return 'PM';
 }
 
 function toStr(obj) {
