@@ -450,14 +450,14 @@ function backBtn() {
 function shareText(score) {
 
     deviation_time = (date2.getTime() - _date1.getTime())
-    if (score <= 40) return 'D';
-    if (score <= 56) return 'C';
-    if (score <= 128) return 'B';
-    if (score <= 176) return 'A';
-    if (score <= 260) return 'AA';
-    if (score <= 380) return 'EX';
-    if (score <= 460) return 'EX+';
-    if (score >= 1200) return 'EX++';
+    if (score <= 64) return 'D';
+    if (score <= 120) return 'C';
+    if (score <= 150) return 'B';
+    if (score <= 222) return 'A';
+    if (score <= 294) return 'AA';
+    if (score <= 412) return 'EX';
+    if (score <= 512) return 'EX+';
+    if (score >= 1300) return 'EX++';
     return 'PM';
 }
 
