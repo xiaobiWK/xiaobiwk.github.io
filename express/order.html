@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>TC速運 | 新建訂單</title>
+  <style>
+    :root{
+      --bg:#0f172a; --card:#111827; --muted:#94a3b8; --text:#e5e7eb;
+      --brand:#2563eb; --brand-2:#1d4ed8; --ok:#10b981;
+      --ring:rgba(37,99,235,.35); --shadow:0 10px 25px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;background: radial-gradient(1200px 600px at 70% -10%, rgba(37,99,235,.15), transparent 60%) , #0f172a;
+      color:var(--text);font-family: ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Hiragino Kaku Gothic ProN","PingFang TC","Microsoft JhengHei","Microsoft YaHei","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji",sans-serif;
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .container{max-width:980px;margin:0 auto;padding:16px 20px}
+
+    header{position:sticky;top:0;z-index:50;backdrop-filter: blur(8px);background:rgba(15,23,42,.7);
+      border-bottom:1px solid rgba(148,163,184,.15);}
+    .nav{display:flex;align-items:center;gap:16px;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:42px;width:auto}
+    .brand .title{font-weight:800;letter-spacing:.3px}
+    .lang{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .lang button{appearance:none;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text);
+      padding:8px 12px;border-radius:10px;font-size:13px;cursor:pointer}
+    .lang button.active,.lang button:hover{border-color:transparent;background:var(--brand);box-shadow:0 0 0 6px var(--ring)}
+
+    .card{background: linear-gradient(180deg, rgba(17,24,39,.9), rgba(17,24,39,.75));
+      border:1px solid rgba(148,163,184,.15);padding:18px;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+    label{font-weight:700}
+    input[type="number"], select, input[type="text"]{
+      background:#0b1220;color:var(--text);border:1px solid rgba(148,163,184,.25);
+      border-radius:12px;padding:12px 14px;outline:none
+    }
+    input[type="number"]:focus, select:focus, input[type="text"]:focus{box-shadow:0 0 0 6px var(--ring);border-color:transparent}
+    .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:12px;
+      border:1px solid transparent;font-weight:700;letter-spacing:.2px;cursor:pointer;transition:.18s ease}
+    .btn-primary{background:var(--brand)}
+    .btn-primary:hover{background:var(--brand-2)}
+    .btn-ghost{background:transparent;border-color:rgba(148,163,184,.25);color:var(--text)}
+    .btn-ghost:hover{border-color:transparent;background:rgba(148,163,184,.08)}
+    .ok{color:var(--ok);font-weight:700}
+    .table{width:100%;border-collapse:separate;border-spacing:0 10px;margin-top:8px}
+    .row-price{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;background:rgba(17,24,39,.7);
+      border:1px solid rgba(148,163,184,.15);border-radius:14px;padding:10px 12px;margin:8px 0}
+    footer{margin-top:28px;border-top:1px solid rgba(148,163,184,.15);color:var(--muted);font-size:13px;padding:16px 0 28px;text-align:center}
+
+    @media (max-width: 860px){
+      .grid{grid-template-columns:1fr}
+      .row-price{grid-template-columns:1.6fr .8fr .8fr}
+      .brand .title{display:none}
+      .actions .btn{flex:1;min-width:140px}
+      .lang{justify-content:flex-start}
+    }
+    @media (max-width: 420px){ .row-price{grid-template-columns:1fr} }
+  </style>
+</head>
+<body onload="switchLang('zh-tw')">
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <a href="/index.html" aria-label="Home">
+          <img src="/images/logo.png" alt="TC Express Logo" />
+        </a>
+        <div class="title" id="siteTitle">TC速運 | 新建訂單</div>
+      </div>
+      <div class="lang" aria-label="Language switcher">
+        <button onclick="switchLang('en')" id="btn-en">EN</button>
+        <button onclick="switchLang('zh-tw')" id="btn-zh-tw" class="active">繁</button>
+        <button onclick="switchLang('zh-cn')" id="btn-zh-cn">简</button>
+        <button onclick="switchLang('yue')" id="btn-yue">粵</button>
+        <button onclick="switchLang('ja')" id="btn-ja">日本語</button>
+        <button onclick="switchLang('ko')" id="btn-ko">한국어</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card" style="margin-bottom:18px">
+      <h1 id="pageTitle">新建訂單</h1>
+      <p class="muted" id="pageLead">請填寫座標與種類，生成訂單號後，發送給客服安排時間。</p>
+    </div>
+
+    <div class="grid">
+      <!-- 左：表單 -->
+      <div class="card">
+        <h2 id="pickupTitle">拿貨座標</h2>
+        <div class="row3">
+          <div class="field">
+            <label for="px" id="labelPX">X</label>
+            <input type="number" id="px" placeholder="0" step="1" />
+          </div>
+          <div class="field">
+            <label for="py" id="labelPY">Y</label>
+            <input type="number" id="py" placeholder="64" step="1" />
+          </div>
+          <div class="field">
+            <label for="pz" id="labelPZ">Z</label>
+            <input type="number" id="pz" placeholder="0" step="1" />
+          </div>
+        </div>
+
+        <h2 id="destTitle" style="margin-top:10px">終點座標</h2>
+        <div class="row3">
+          <div class="field">
+            <label for="dx" id="labelDX">X</label>
+            <input type="number" id="dx" placeholder="0" step="1" />
+          </div>
+          <div class="field">
+            <label for="dy" id="labelDY">Y</label>
+            <input type="number" id="dy" placeholder="64" step="1" />
+          </div>
+          <div class="field">
+            <label for="dz" id="labelDZ">Z</label>
+            <input type="number" id="dz" placeholder="0" step="1" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="type" id="labelType">種類</label>
+          <select id="type">
+            <option value="1" id="optNormal">普通</option>
+            <option value="2" id="optExpress">加急（+2 CNY）</option>
+          </select>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-ghost" id="btnReset" type="button" onclick="resetForm()">清空</button>
+          <button class="btn btn-primary" id="btnCreate" type="button" onclick="createOrder()">創建訂單</button>
+        </div>
+
+        <div class="field" style="margin-top:12px">
+          <label id="labelOrderNo">訂單號</label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <input type="text" id="orderNo" readonly placeholder="生成的訂單號將顯示在此" />
+            <button class="btn btn-ghost" id="btnCopy" type="button" onclick="copyOrder()">複製</button>
+          </div>
+          <div class="ok" id="copyHint" style="display:none;margin-top:6px">已複製</div>
+        </div>
+      </div>
+
+      <!-- 右：價格說明 -->
+      <div class="card">
+        <h2 id="pricingTitle">基礎運費（依批次計價）</h2>
+        <p class="muted" id="pricingLead">以下與首頁一致，按每 5 件為一個結算單位。</p>
+
+        <table class="table" role="table" aria-label="Pricing table">
+          <thead>
+            <tr>
+              <th id="thTier">區間（每批）</th>
+              <th id="thRate">單價</th>
+              <th id="thUnit">結算單位</th>
+            </tr>
+          </thead>
+        </table>
+
+        <div class="row-price">
+          <div id="p1Range">1–5 件</div>
+          <div id="p1Price">2.5 CNY</div>
+          <div id="p1Unit">每 5 件</div>
+        </div>
+        <div class="row-price">
+          <div id="p2Range">6–10 件</div>
+          <div id="p2Price">5.0 CNY</div>
+          <div id="p2Unit">每 5 件</div>
+        </div>
+        <div class="row-price">
+          <div id="p3Range">10 件以上</div>
+          <div id="p3Price">10.0 CNY</div>
+          <div id="p3Unit">每 5 件</div>
+        </div>
+
+        <p class="muted" id="pricingNote" style="margin-top:10px">
+          備註：不足 5 件以 1 個單位計，超出部分進位至下一單位。加急另加 2 CNY。
+        </p>
+      </div>
+    </div>
+
+    <div class="actions" style="margin-top:18px">
+      <a href="/index.html" class="btn btn-ghost" id="btnBack">返回首頁</a>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> <span id="footerBrand">TC速運</span>. <span id="rights">All rights reserved.</span>
+  </footer>
+
+  <script>
+    const $ = id => document.getElementById(id);
+
+    // 語言資料（與 index.html 風格一致；日文無片假名；韓文漢字混用）
+    const langData = {
+      "en": {
+        siteTitle:"TC Express | New Order",
+        pageTitle:"Create Order",
+        pageLead:"Fill in coordinates and type. Generate an order number and send it to our customer service to schedule.",
+        pickupTitle:"Pickup Coordinates",
+        destTitle:"Destination Coordinates",
+        labelType:"Type",
+        optNormal:"Normal",
+        optExpress:"Express (+2 CNY)",
+        btnReset:"Clear",
+        btnCreate:"Create Order",
+        labelOrderNo:"Order Number",
+        copy:"Copy",
+        copied:"Copied",
+        orderPlaceholder:"Your generated order number will appear here",
+        alert:"Please send the order number to TC customer service. We will arrange a suitable time for you.",
+        pricingTitle:"Base Fare (per batch)",
+        pricingLead:"Same as the homepage. Billing unit is 5 items.",
+        thTier:"Tier (per batch)", thRate:"Price", thUnit:"Unit",
+        p1Range:"1–5 items", p1Price:"2.5 CNY", p1Unit:"per 5 items",
+        p2Range:"6–10 items", p2Price:"5.0 CNY", p2Unit:"per 5 items",
+        p3Range:"10+ items", p3Price:"10.0 CNY", p3Unit:"per 5 items",
+        pricingNote:"Less than 5 items are billed as one unit; excess rounds up. Express +2 CNY.",
+        back:"Back to Home",
+        footerBrand:"TC Express",
+        rights:"All rights reserved."
+      },
+      "zh-tw": {
+        siteTitle:"TC速運 | 新建訂單",
+        pageTitle:"新建訂單",
+        pageLead:"請填寫座標與種類，生成訂單號後，發送給客服安排時間。",
+        pickupTitle:"拿貨座標",
+        destTitle:"終點座標",
+        labelType:"種類",
+        optNormal:"普通",
+        optExpress:"加急（+2 CNY）",
+        btnReset:"清空",
+        btnCreate:"創建訂單",
+        labelOrderNo:"訂單號",
+        copy:"複製",
+        copied:"已複製",
+        orderPlaceholder:"生成的訂單號將顯示在此",
+        alert:"請把訂單號發給TC客服，我們會給您安排合適的時間。",
+        pricingTitle:"基礎運費（依批次計價）",
+        pricingLead:"與首頁一致；每 5 件為 1 個結算單位。",
+        thTier:"區間（每批）", thRate:"單價", thUnit:"結算單位",
+        p1Range:"1–5 件", p1Price:"2.5 CNY", p1Unit:"每 5 件",
+        p2Range:"6–10 件", p2Price:"5.0 CNY", p2Unit:"每 5 件",
+        p3Range:"10 件以上", p3Price:"10.0 CNY", p3Unit:"每 5 件",
+        pricingNote:"不足 5 件以 1 單位計，超出進位；加急另加 2 CNY。",
+        back:"返回首頁",
+        footerBrand:"TC速運",
+        rights:"版權所有"
+      },
+      "zh-cn": {
+        siteTitle:"TC速运 | 新建订单",
+        pageTitle:"新建订单",
+        pageLead:"请填写坐标与种类，生成订单号后，发送给客服安排时间。",
+        pickupTitle:"拿货坐标",
+        destTitle:"终点坐标",
+        labelType:"种类",
+        optNormal:"普通",
+        optExpress:"加急（+2 CNY）",
+        btnReset:"清空",
+        btnCreate:"创建订单",
+        labelOrderNo:"订单号",
+        copy:"复制",
+        copied:"已复制",
+        orderPlaceholder:"生成的订单号将显示在此",
+        alert:"请把订单号发给TC客服，我们会为您安排合适的时间。",
+        pricingTitle:"基础运费（按批次计价）",
+        pricingLead:"与首页一致；每 5 件为 1 个结算单位。",
+        thTier:"区间（每批）", thRate:"单价", thUnit:"结算单位",
+        p1Range:"1–5 件", p1Price:"2.5 CNY", p1Unit:"每 5 件",
+        p2Range:"6–10 件", p2Price:"5.0 CNY", p2Unit:"每 5 件",
+        p3Range:"10 件以上", p3Price:"10.0 CNY", p3Unit:"每 5 件",
+        pricingNote:"不足 5 件按 1 单位计，超出进位；加急另加 2 CNY。",
+        back:"返回首页",
+        footerBrand:"TC速运",
+        rights:"版权所有"
+      },
+      "yue": {
+        siteTitle:"TC速運 | 新增訂單",
+        pageTitle:"新增訂單",
+        pageLead:"請填好座標同種類，產生訂單號之後，發畀客服再安排時間。",
+        pickupTitle:"攞貨座標",
+        destTitle:"終點座標",
+        labelType:"種類",
+        optNormal:"普通",
+        optExpress:"加急（+2 CNY）",
+        btnReset:"清空",
+        btnCreate:"建立訂單",
+        labelOrderNo:"訂單號",
+        copy:"複製",
+        copied:"已複製",
+        orderPlaceholder:"生成嘅訂單號會顯示喺呢度",
+        alert:"請把訂單號發畀TC客服，我哋會幫你安排合適時間。",
+        pricingTitle:"基礎運費（按批次）",
+        pricingLead:"同首頁一樣；每 5 件為 1 個單位。",
+        thTier:"區間（每批）", thRate:"單價", thUnit:"結算單位",
+        p1Range:"1–5 件", p1Price:"2.5 CNY", p1Unit:"每 5 件",
+        p2Range:"6–10 件", p2Price:"5.0 CNY", p2Unit:"每 5 件",
+        p3Range:"10 件以上", p3Price:"10.0 CNY", p3Unit:"每 5 件",
+        pricingNote:"不足 5 件都當 1 單位，超出就進位；加急另加 2 CNY。",
+        back:"返回首頁",
+        footerBrand:"TC速運",
+        rights:"版權所有"
+      },
+      /* 日語：片假名なし（漢字＋ひらがな） */
+      "ja": {
+        siteTitle:"TC速達 | 新しい注文",
+        pageTitle:"新しい注文",
+        pageLead:"座標と種類をいれて、注文番号をつくり、客服におくって日どりを取りきめます。",
+        pickupTitle:"受け取り座標",
+        destTitle:"終点座標",
+        labelType:"種類",
+        optNormal:"ふつう",
+        optExpress:"急ぎ（+2 CNY）",
+        btnReset:"消す",
+        btnCreate:"注文を作る",
+        labelOrderNo:"注文番号",
+        copy:"写す",
+        copied:"写しました",
+        orderPlaceholder:"作られた注文番号はここに出ます",
+        alert:"注文番号をTCの客服におくってください。こちらで時刻を取りきめます。",
+        pricingTitle:"基礎運賃（ひとまとめごと）",
+        pricingLead:"表は 5 個を一単位とし、元の頁とおなじです。",
+        thTier:"区分（ひとまとめ）", thRate:"価格", thUnit:"単位",
+        p1Range:"一〜五個", p1Price:"2.5 CNY", p1Unit:"五個ごと",
+        p2Range:"六〜十個", p2Price:"5.0 CNY", p2Unit:"五個ごと",
+        p3Range:"十個いじょう", p3Price:"10.0 CNY", p3Unit:"五個ごと",
+        pricingNote:"五個みたないときは一単位。こえたぶんはつぎの単位へ。急ぎは 2 CNY を加えます。",
+        back:"元の頁へ",
+        footerBrand:"TC速達",
+        rights:"無断転載を禁じます"
+      },
+      /* 韓語：漢字混用（한자혼용체） */
+      "ko": {
+        siteTitle:"TC 速運 | 新規 注文",
+        pageTitle:"新規 注文",
+        pageLead:"座標 與 種類를 記入後, 注文番號를 生成하여 顧客 服務에 送付하면 日程을 調整합니다.",
+        pickupTitle:"拿貨 座標",
+        destTitle:"終點 座標",
+        labelType:"種類",
+        optNormal:"普通",
+        optExpress:"加急（+2 CNY）",
+        btnReset:"初期化",
+        btnCreate:"注文 生成",
+        labelOrderNo:"注文番號",
+        copy:"複製",
+        copied:"複製 完了",
+        orderPlaceholder:"生成된 注文番號가 這里에 表示됩니다",
+        alert:"注文番號를 TC 顧客 服務에 傳達해 주십시오. 適切한 時間을 安排해 드립니다.",
+        pricingTitle:"基礎 運費（批次）",
+        pricingLead:"首頁와 同一 規定. 五 件을 一 單位로 計算.",
+        thTier:"區間（每 批次）", thRate:"單價", thUnit:"結算 單位",
+        p1Range:"一–五 件", p1Price:"2.5 CNY", p1Unit:"五 件 當",
+        p2Range:"六–十 件", p2Price:"5.0 CNY", p2Unit:"五 件 當",
+        p3Range:"十 件 以上", p3Price:"10.0 CNY", p3Unit:"五 件 當",
+        pricingNote:"未滿 五 件은 一 單位. 超過 分은 次 單位로 切上. 加急 追加 2 CNY.",
+        back:"首頁 復歸",
+        footerBrand:"TC 速運",
+        rights:"All rights reserved."
+      }
+    };
+
+    function switchLang(code){
+      const d = langData[code] || langData["en"];
+      document.title = d.siteTitle;
+      $("siteTitle").textContent = d.siteTitle;
+      // 標題與說明
+      $("pageTitle").textContent = d.pageTitle;
+      $("pageLead").textContent = d.pageLead;
+      // 區塊標題
+      $("pickupTitle").textContent = d.pickupTitle;
+      $("destTitle").textContent = d.destTitle;
+      // 標籤（X/Y/Z 固定顯示字母即可）
+      $("labelPX").textContent = "X"; $("labelPY").textContent = "Y"; $("labelPZ").textContent = "Z";
+      $("labelDX").textContent = "X"; $("labelDY").textContent = "Y"; $("labelDZ").textContent = "Z";
+      // 種類等
+      $("labelType").textContent = d.labelType;
+      $("optNormal").textContent = d.optNormal;
+      $("optExpress").textContent = d.optExpress;
+      $("btnReset").textContent = d.btnReset;
+      $("btnCreate").textContent = d.btnCreate;
+      $("labelOrderNo").textContent = d.labelOrderNo;
+      $("btnCopy").textContent = d.copy;
+      $("copyHint").textContent = d.copied;
+      $("orderNo").placeholder = d.orderPlaceholder;
+      // 價格說明
+      $("pricingTitle").textContent = d.pricingTitle;
+      $("pricingLead").textContent = d.pricingLead;
+      $("thTier").textContent = d.thTier;
+      $("thRate").textContent = d.thRate;
+      $("thUnit").textContent = d.thUnit;
+      $("p1Range").textContent = d.p1Range; $("p1Price").textContent = d.p1Price; $("p1Unit").textContent = d.p1Unit;
+      $("p2Range").textContent = d.p2Range; $("p2Price").textContent = d.p2Price; $("p2Unit").textContent = d.p2Unit;
+      $("p3Range").textContent = d.p3Range; $("p3Price").textContent = d.p3Price; $("p3Unit").textContent = d.p3Unit;
+      $("pricingNote").textContent = d.pricingNote;
+      $("btnBack").textContent = d.back;
+      $("footerBrand").textContent = d.footerBrand;
+      $("rights").textContent = d.rights;
+      // active 樣式
+      ["btn-en","btn-zh-tw","btn-zh-cn","btn-yue","btn-ja","btn-ko"].forEach(id=>{
+        const btn = $(id); if(!btn) return;
+        btn.classList.toggle("active", id==="btn-"+code);
+      });
+      // 保存提示字串
+      window.__ORDER_ALERT__ = d.alert;
+      // 語言標籤
+      document.documentElement.lang = code === "zh-tw" ? "zh-Hant" : code === "zh-cn" ? "zh-Hans" : code;
+    }
+
+    function resetForm(){
+      ["px","py","pz","dx","dy","dz"].forEach(id=>$(id).value="");
+      $("type").value = "1";
+      $("orderNo").value = "";
+      $("copyHint").style.display = "none";
+    }
+
+    // 將座標轉為 6 位純數字；負數：1000000 + n
+    function formatCoord(num) {
+      let n = parseInt(num,10);
+      if (isNaN(n)) n = 0;
+      if (n < 0) n = 1000000 + n; // 轉為正範圍
+      return String(n).padStart(6, '0');
+    }
+
+    function createOrder(){
+      const px = $("px").value.trim(), py = $("py").value.trim(), pz = $("pz").value.trim();
+      const dx = $("dx").value.trim(), dy = $("dy").value.trim(), dz = $("dz").value.trim();
+      const type = $("type").value; // 1 普通, 2 加急
+
+      if([px,py,pz,dx,dy,dz].some(v=>v==="")){
+        alert("Please fill all coordinate fields / 請完整填寫座標。");
+        return;
+      }
+
+      const part1 = formatCoord(px);
+      const part2 = formatCoord(py);
+      const part3 = formatCoord(pz);
+      const part4 = formatCoord(dx);
+      const part5 = formatCoord(dy);
+      const part6 = formatCoord(dz);
+      const t = type; 
+      const ts = Math.floor(Date.now()/1000);
+
+      const order = `${part1}${part2}${part3}${part4}${part5}${part6}${t}${ts}`;
+
+      $("orderNo").value = order;
+
+      try{ navigator.clipboard.writeText(order).then(()=>{ $("copyHint").style.display="block"; }); }catch(e){}
+
+      alert(window.__ORDER_ALERT__ || "請把訂單號發給TC客服，我們會安排合適時間");
+    }
+
+    function copyOrder(){
+      const v = $("orderNo").value;
+      if(!v) return;
+      navigator.clipboard.writeText(v).then(()=>{
+        $("copyHint").style.display="block";
+        setTimeout(()=>{$("copyHint").style.display="none";},1800);
+      });
+    }
+
+    // 年份
+    $("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

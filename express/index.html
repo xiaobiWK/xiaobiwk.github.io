@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>TC速運 | TC Express Delivery</title>
+  <style>
+    :root{
+      --bg:#0f172a;          /* slate-900 */
+      --card:#111827;       /* gray-900 */
+      --muted:#94a3b8;      /* slate-400 */
+      --text:#e5e7eb;       /* gray-200 */
+      --brand:#2563eb;      /* blue-600 */
+      --brand-2:#1d4ed8;    /* blue-700 */
+      --ok:#10b981;         /* emerald-500 */
+      --ring:rgba(37,99,235,.35);
+      --shadow:0 10px 25px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Hiragino Kaku Gothic ProN", "PingFang TC", "Microsoft JhengHei", "Microsoft YaHei", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+      background: radial-gradient(1200px 600px at 70% -10%, rgba(37,99,235,.15), transparent 60%) , var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .container{max-width:1100px;margin:0 auto;padding:16px 20px}
+
+    header{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter: blur(8px);
+      background:rgba(15,23,42,.7);
+      border-bottom:1px solid rgba(148,163,184,.15);
+    }
+    .nav{
+      display:flex;align-items:center;gap:16px;justify-content:space-between;
+      padding:10px 0;
+    }
+    .brand{display:flex;align-items:center;gap:12px;}
+    .brand img{height:42px;width:auto}
+    .brand .title{font-weight:800;letter-spacing:.3px}
+    .lang{
+      display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-end;
+    }
+    .lang button{
+      appearance:none;border:1px solid rgba(148,163,184,.25);
+      background:transparent;color:var(--text);
+      padding:8px 12px;border-radius:10px;font-size:13px;cursor:pointer;
+    }
+    .lang button.active, .lang button:hover{
+      border-color:transparent;background:var(--brand);box-shadow:0 0 0 6px var(--ring);
+    }
+
+    .hero{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;
+      padding:32px 0 18px;
+    }
+    .hero-card{
+      background: linear-gradient(180deg, rgba(17,24,39,.85), rgba(17,24,39,.7));
+      border:1px solid rgba(148,163,184,.15);
+      padding:22px 22px;border-radius:var(--radius);box-shadow:var(--shadow);
+    }
+    .hero h1{margin:0 0 10px;font-size:28px;line-height:1.25}
+    .hero p{margin:0;color:var(--muted)}
+    .actions{
+      display:flex;gap:12px;flex-wrap:wrap;margin-top:16px
+    }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 16px;border-radius:12px;border:1px solid transparent;
+      font-weight:700;letter-spacing:.2px;cursor:pointer;
+      transition:.18s ease; user-select:none;
+    }
+    .btn-primary{background:var(--brand);}
+    .btn-primary:hover{background:var(--brand-2)}
+    .btn-ghost{
+      background:transparent;border-color:rgba(148,163,184,.25);color:var(--text)
+    }
+    .btn-ghost:hover{border-color:transparent;background:rgba(148,163,184,.08)}
+    .grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(17,24,39,.9), rgba(17,24,39,.75));
+      border:1px solid rgba(148,163,184,.15);
+      padding:18px;border-radius:var(--radius);box-shadow:var(--shadow);
+    }
+    .card h3{margin:0 0 6px}
+    .muted{color:var(--muted)}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .badge{
+      border:1px solid rgba(148,163,184,.2);
+      padding:4px 8px;border-radius:999px;font-size:12px;color:var(--muted)
+    }
+
+    .sections{margin-top:22px}
+    .section{display:none}
+    .section.active{display:block}
+    .section h2{margin-top:0}
+
+    .table{
+      width:100%;border-collapse:separate;border-spacing:0 10px;margin-top:8px
+    }
+    .table thead th{
+      font-size:14px;text-align:left;color:var(--muted);font-weight:600;padding:6px 10px
+    }
+    .row{
+      display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;
+      background:rgba(17,24,39,.7);border:1px solid rgba(148,163,184,.15);
+      border-radius:14px;padding:10px 12px;margin:8px 0
+    }
+    .note{margin-top:10px;color:var(--muted);font-size:14px}
+    .ok{color:var(--ok);font-weight:700}
+
+    footer{
+      margin-top:28px;border-top:1px solid rgba(148,163,184,.15);
+      color:var(--muted);font-size:13px;padding:16px 0 28px;text-align:center
+    }
+
+    @media (max-width: 860px){
+      .hero{grid-template-columns:1fr;gap:16px}
+      .grid{grid-template-columns:1fr}
+      .row{grid-template-columns:1.6fr .8fr .8fr}
+      .brand .title{display:none}
+      .actions .btn{flex:1;min-width:140px}
+      .lang{justify-content:flex-start}
+    }
+    @media (max-width: 420px){
+      .row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body onload="switchLang('zh-tw');setSection('home');">
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <a href="#" onclick="setSection('home')" aria-label="Home">
+          <img src="/images/logo.png" alt="TC Express Logo" />
+        </a>
+        <div class="title" id="siteTitle">TC速運 | TC Express</div>
+      </div>
+      <div class="lang" aria-label="Language switcher">
+        <button onclick="switchLang('en')" id="btn-en">EN</button>
+        <button onclick="switchLang('zh-tw')" id="btn-zh-tw" class="active">繁</button>
+        <button onclick="switchLang('zh-cn')" id="btn-zh-cn">简</button>
+        <button onclick="switchLang('yue')" id="btn-yue">粵</button>
+        <button onclick="switchLang('ja')" id="btn-ja">日本語</button>
+        <button onclick="switchLang('ko')" id="btn-ko">한국어</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1 id="heroTitle">TC速運</h1>
+        <p id="heroSubtitle" class="muted">
+          讓您在 2b2t 伺服器中更快速、安全地傳遞遊戲物品。
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" id="orderBtn" href="/order.html" rel="nofollow">立即下單配送</a>
+          <button class="btn btn-ghost" onclick="setSection('customer')" id="customerBtn">客服中心</button>
+          <button class="btn btn-ghost" onclick="setSection('pricing')" id="pricingBtn">價格方案</button>
+        </div>
+        <div class="badges">
+          <span class="badge" id="badgeFast">快速響應</span>
+          <span class="badge" id="badgeSecure">安全可靠</span>
+          <span class="badge" id="badgeCoverage">跨區支援</span>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3 id="introTitle">什麼是 TC速運？</h3>
+          <p id="introDesc" class="muted">
+            TC速運是一項專為 2b2t 玩家打造的物品傳送服務，協助您快速、安全地運送遊戲物品。不論是玩家交易、跨基地搬運，或節省長距離跑圖時間，我們都提供穩定可靠的交付方式。
+          </p>
+        </div>
+        <div class="card">
+          <h3 id="howTitle">如何運作</h3>
+          <p id="howDesc" class="muted">
+            下單後，我們的協作員會與您約定時間、座標與收貨方式。全程採用分步驗收與風險控管流程，確保物品交付準確無誤。
+          </p>
+        </div>
+        <div class="card">
+          <h3 id="whyTitle">為什麼選擇我們</h3>
+          <p id="whyDesc" class="muted">
+            多時區人手、標準化交接、延遲補償政策與基本保護值（Basic Coverage），讓您的每一次交付都有保障。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sections">
+      <div class="section" id="home" aria-live="polite" aria-busy="false"></div>
+
+      <div class="section" id="customer" aria-live="polite" aria-busy="false">
+        <div class="card">
+          <h2 id="serviceTitle">客服中心</h2>
+          <p class="muted" id="serviceLead">若需支援，請透過下列方式與我們聯繫。</p>
+          <div class="row" style="align-items:center">
+            <div><strong>WhatsApp</strong></div>
+            <div class="ok">88137186</div>
+            <div><a id="waLink" href="https://wa.me/88137186" target="_blank" rel="noreferrer noopener">聊天</a></div>
+          </div>
+          <div class="row" style="align-items:center">
+            <div><strong>QQ</strong></div>
+            <div class="ok">2856643485</div>
+            <div><span id="qqNote">請添加好友並備註「TC速運」</span></div>
+          </div>
+          <div class="note" id="serviceNote">
+            注意：回覆速度可能因伺服器人流與時區而異。我們將盡力於可行時段內回覆。
+          </div>
+          <div class="actions" style="margin-top:12px">
+            <button class="btn btn-ghost" onclick="setSection('pricing')" id="toPricingBtn">查看價格</button>
+            <a class="btn btn-primary" href="/order.html" id="toOrderBtn">前往下單</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="pricing" aria-live="polite" aria-busy="false">
+        <div class="card">
+          <h2 id="pricingTitle">價格方案</h2>
+          <p id="pricingLead" class="muted">清晰階梯式收費，按批次計價。</p>
+
+          <table class="table" role="table" aria-label="Pricing table">
+            <thead>
+              <tr>
+                <th id="thTier">區間（每批）</th>
+                <th id="thRate">單價</th>
+                <th id="thUnit">結算單位</th>
+              </tr>
+            </thead>
+          </table>
+
+          <div class="row" role="row">
+            <div id="p1Range">1–5 件</div>
+            <div id="p1Price">2.5 CNY</div>
+            <div id="p1Unit">每 5 件</div>
+          </div>
+          <div class="row" role="row">
+            <div id="p2Range">6–10 件</div>
+            <div id="p2Price">5.0 CNY</div>
+            <div id="p2Unit">每 5 件</div>
+          </div>
+          <div class="row" role="row">
+            <div id="p3Range">10 件以上</div>
+            <div id="p3Price">10.0 CNY</div>
+            <div id="p3Unit">每 5 件</div>
+          </div>
+
+          <div class="note" id="pricingNote">
+            備註：以 5 件為一個「結算單位」。如不足 5 件，按一個單位計；超出部份將進位到下一個單位。
+          </div>
+
+          <div class="actions" style="margin-top:12px">
+            <button class="btn btn-ghost" onclick="setSection('customer')" id="toServiceBtn">聯絡客服</button>
+            <a class="btn btn-primary" href="/order.html" id="toOrderBtn2">立即下單</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> <span id="footerBrand">TC速運</span>. <span id="rights">All rights reserved.</span>
+  </footer>
+
+  <script>
+    const langData = {
+      "en": {
+        siteTitle: "TC Express Delivery",
+        heroTitle: "TC Express",
+        heroSubtitle: "Deliver in-game items faster and more securely across the 2b2t server.",
+        orderBtn: "Order Delivery Now",
+        customerBtn: "Customer Service",
+        pricingBtn: "Pricing",
+        badgeFast: "Fast Response",
+        badgeSecure: "Secure & Reliable",
+        badgeCoverage: "Cross-Region Support",
+        introTitle: "What is TC Express?",
+        introDesc: "TC Express Delivery helps 2b2t players transfer items quickly and safely. Whether you're trading with friends, moving valuables across distant bases, or saving time on long travels, we deliver with standardized handoff and risk control.",
+        howTitle: "How It Works",
+        howDesc: "After you place an order, we coordinate time, coordinates, and delivery method with you. Stepwise verification ensures accurate and complete delivery.",
+        whyTitle: "Why Choose Us",
+        whyDesc: "Multi-timezone operators, standardized procedures, delay compensation, and basic coverage to protect every delivery.",
+        serviceTitle: "Customer Service",
+        serviceLead: "Need help? Contact us through the channels below.",
+        serviceNote: "Response time may vary depending on server traffic and time zones. We will get back to you as soon as possible.",
+        qqNote: "Add friend and note “TC Express”.",
+        toPricingBtn: "See Pricing",
+        toOrderBtn: "Go to Order",
+        pricingTitle: "Pricing",
+        pricingLead: "Transparent tiered pricing, billed per batch.",
+        thTier: "Tier (per batch)",
+        thRate: "Price",
+        thUnit: "Unit",
+        p1Range: "1–5 items", p1Price: "2.5 CNY", p1Unit: "per 5 items",
+        p2Range: "6–10 items", p2Price: "5.0 CNY", p2Unit: "per 5 items",
+        p3Range: "10+ items", p3Price: "10.0 CNY", p3Unit: "per 5 items",
+        pricingNote: "Billing unit is 5 items. Quantities less than 5 are billed as one unit; excess is rounded up to the next unit.",
+        toServiceBtn: "Contact Service",
+        toOrderBtn2: "Order Now",
+        footerBrand: "TC Express",
+        rights: "All rights reserved."
+      },
+      "zh-tw": {
+        siteTitle: "TC速運",
+        heroTitle: "TC速運",
+        heroSubtitle: "讓您在 2b2t 伺服器中更快速、安全地傳遞遊戲物品。",
+        orderBtn: "立即下單配送",
+        customerBtn: "客服中心",
+        pricingBtn: "價格方案",
+        badgeFast: "快速響應",
+        badgeSecure: "安全可靠",
+        badgeCoverage: "跨區支援",
+        introTitle: "什麼是 TC速運？",
+        introDesc: "TC速運是一項專為 2b2t 玩家打造的物品傳送服務，協助您快速、安全地運送遊戲物品。不論是玩家交易、跨基地搬運，或節省長距離跑圖時間，我們都提供標準化交接與風險控管的穩定交付。",
+        howTitle: "如何運作",
+        howDesc: "下單後，我們會與您協調時間、座標與交收方式，並採分步驗證流程，確保交付準確完整。",
+        whyTitle: "為什麼選擇我們",
+        whyDesc: "多時區人手、標準流程、延遲補償與基本保障，讓每一次交付更安心。",
+        serviceTitle: "客服中心",
+        serviceLead: "需要協助？請透過以下方式聯繫我們。",
+        serviceNote: "回覆速度可能因伺服器人流與時區而異；我們會盡速回覆。",
+        qqNote: "請添加好友並備註「TC速運」。",
+        toPricingBtn: "查看價格",
+        toOrderBtn: "前往下單",
+        pricingTitle: "價格方案",
+        pricingLead: "清晰階梯式收費，按批次計價。",
+        thTier: "區間（每批）",
+        thRate: "單價",
+        thUnit: "結算單位",
+        p1Range: "1–5 件", p1Price: "2.5 CNY", p1Unit: "每 5 件",
+        p2Range: "6–10 件", p2Price: "5.0 CNY", p2Unit: "每 5 件",
+        p3Range: "10 件以上", p3Price: "10.0 CNY", p3Unit: "每 5 件",
+        pricingNote: "以 5 件為一個結算單位；不足 5 件以 1 個單位計，超出部分進位至下一單位。",
+        toServiceBtn: "聯絡客服",
+        toOrderBtn2: "立即下單",
+        footerBrand: "TC速運",
+        rights: "版權所有"
+      },
+      "zh-cn": {
+        siteTitle: "TC速运",
+        heroTitle: "TC速运",
+        heroSubtitle: "让您在 2b2t 服务器中更快速、安全地传递游戏物品。",
+        orderBtn: "立即下单配送",
+        customerBtn: "客户服务",
+        pricingBtn: "价格方案",
+        badgeFast: "快速响应",
+        badgeSecure: "安全可靠",
+        badgeCoverage: "跨区支持",
+        introTitle: "什么是 TC速运？",
+        introDesc: "TC速运是面向 2b2t 玩家提供的物品传送服务，帮助您更快更安全地运送物品。无论是玩家交易、跨基地搬运，还是节省跑路时间，我们通过标准化交接与风险控制，确保交付稳定可靠。",
+        howTitle: "如何运作",
+        howDesc: "下单后，我们会与您约定时间、坐标与交付方式，采用分步验收流程，确保交付完整无误。",
+        whyTitle: "为什么选择我们",
+        whyDesc: "多时区人员、标准流程、延迟补偿与基础保障，为每一次交付保驾护航。",
+        serviceTitle: "客户服务",
+        serviceLead: "需要帮助？请通过以下方式联系我们。",
+        serviceNote: "回复速度可能受服务器人流与时区影响；我们将尽快回复。",
+        qqNote: "请添加好友并备注“TC速运”。",
+        toPricingBtn: "查看价格",
+        toOrderBtn: "前往下单",
+        pricingTitle: "价格方案",
+        pricingLead: "清晰的阶梯计费，按批次结算。",
+        thTier: "区间（每批）",
+        thRate: "单价",
+        thUnit: "结算单位",
+        p1Range: "1–5 件", p1Price: "2.5 CNY", p1Unit: "每 5 件",
+        p2Range: "6–10 件", p2Price: "5.0 CNY", p2Unit: "每 5 件",
+        p3Range: "10 件以上", p3Price: "10.0 CNY", p3Unit: "每 5 件",
+        pricingNote: "以 5 件为 1 个结算单位；不足 5 件按 1 个单位计，超出部分向上取整到下一单位。",
+        toServiceBtn: "联系客户",
+        toOrderBtn2: "立即下单",
+        footerBrand: "TC速运",
+        rights: "版权所有"
+      },
+      "yue": {
+        siteTitle: "TC速運",
+        heroTitle: "TC速運",
+        heroSubtitle: "喺 2b2t 伺服器入面，幫你更快、更穩陣噉送貨（傳遞遊戲物品）。",
+        orderBtn: "即刻落單送貨",
+        customerBtn: "客戶服務",
+        pricingBtn: "收費詳情",
+        badgeFast: "回覆快",
+        badgeSecure: "安全可靠",
+        badgeCoverage: "跨區支援",
+        introTitle: "咩係 TC速運？",
+        introDesc: "TC速運係比 2b2t 玩家用嘅物品傳送服務，幫你又快又穩陣噉運送裝備同物資。無論同朋友交易、搬去遠距離基地，定係慳返跑路時間，我哋都有標準交收同風險控制，確保成件事妥當。",
+        howTitle: "點樣運作",
+        howDesc: "你落單之後，我哋會同你約時間、座標同收貨方式；分步驗證，確保交收準確冇甩漏。",
+        whyTitle: "點解揀我哋",
+        whyDesc: "多時區人手、標準流程、延遲補償同基本保障，交付更安心。",
+        serviceTitle: "客戶服務",
+        serviceLead: "有需要可以用以下方式搵我哋。",
+        serviceNote: "回覆時間可能受伺服器人流同時區影響；會盡快回覆你。",
+        qqNote: "請加好友並備註「TC速運」。",
+        toPricingBtn: "睇下收費",
+        toOrderBtn: "去落單",
+        pricingTitle: "收費詳情",
+        pricingLead: "清晰階梯收費，以批次計。",
+        thTier: "區間（每批）",
+        thRate: "單價",
+        thUnit: "結算單位",
+        p1Range: "1–5 件", p1Price: "2.5 CNY", p1Unit: "每 5 件",
+        p2Range: "6–10 件", p2Price: "5.0 CNY", p2Unit: "每 5 件",
+        p3Range: "10 件以上", p3Price: "10.0 CNY", p3Unit: "每 5 件",
+        pricingNote: "以 5 件為一個單位；不足 5 件都會當做 1 個單位，超出嘅部分就會進位到下一個單位。",
+        toServiceBtn: "聯絡客服",
+        toOrderBtn2: "即刻落單",
+        footerBrand: "TC速運",
+        rights: "版權所有"
+      },
+      /* ======= 日語（片假名なし／漢字＋ひらがな） ======= */
+      "ja": {
+        siteTitle: "TC速達",
+        heroTitle: "TC速達",
+        heroSubtitle: "2b2t伺服器のうちで、遊戯内の物品をより安全かつ迅速にとどけます。",
+        orderBtn: "いま配送を依頼",
+        customerBtn: "利用者支援",
+        pricingBtn: "料金表",
+        badgeFast: "迅速応対",
+        badgeSecure: "安全信頼",
+        badgeCoverage: "広域対応",
+        introTitle: "TC速達とは",
+        introDesc: "TC速達は、2b2tの遊び手が物品をすばやく安全に受けわたすための服務です。友人との取引や遠い拠点への運搬、長い道のりの時間短縮まで、標準の受け渡しと危険管理により、安定した引き渡しを実行します。",
+        howTitle: "しくみ",
+        howDesc: "ご依頼のあと、時刻・座標・受け渡しのしかたを取り決めます。段階ごとの確認により、まちがいなく引き渡します。",
+        whyTitle: "えらばれる理由",
+        whyDesc: "多時区の対応者、定められた手順、遅延の補償、基本保障により、あんしんの配送体験をつくります。",
+        serviceTitle: "利用者支援",
+        serviceLead: "たすけが必要であれば、つぎの連絡先をご利用ください。",
+        serviceNote: "返信の時分は、人のながれや時区によって変わります。できるだけ早く返答します。",
+        qqNote: "友人追加のさいは「TC速運」としるしてください。",
+        toPricingBtn: "料金を見る",
+        toOrderBtn: "注文へ進む",
+        pricingTitle: "料金表",
+        pricingLead: "明らかな段階料金。ひとまとめごとの請求です。",
+        thTier: "区分（ひとまとめ）",
+        thRate: "価格",
+        thUnit: "単位",
+        p1Range: "一〜五個", p1Price: "2.5 CNY", p1Unit: "五個ごと",
+        p2Range: "六〜十個", p2Price: "5.0 CNY", p2Unit: "五個ごと",
+        p3Range: "十個いじょう", p3Price: "10.0 CNY", p3Unit: "五個ごと",
+        pricingNote: "五個を一単位として計算します。五個にみたないばあいは一単位、超えるぶんはつぎの単位へ切り上げます。",
+        toServiceBtn: "支援へ",
+        toOrderBtn2: "いま注文",
+        footerBrand: "TC速達",
+        rights: "無断転載を禁じます"
+      },
+      /* ======= 韓語（한자혼용체／盡量使用 後漢字詞） ======= */
+      "ko": {
+        siteTitle: "TC 速運",
+        heroTitle: "TC 速運",
+        heroSubtitle: "2b2t 伺服器에서 遊戲 物品 傳送을 더 安全하고 迅速히 行합니다.",
+        orderBtn: "지금 配送 依賴하기",
+        customerBtn: "顧客 服務",
+        pricingBtn: "價格 案內",
+        badgeFast: "迅速 應對",
+        badgeSecure: "安全 信賴",
+        badgeCoverage: "廣域 支援",
+        introTitle: "TC 速運 이란",
+        introDesc: "TC 速運은 2b2t 玩家의 物品 傳送을 爲한 服務로서 迅速·安全한 受渡을 保障합니다. 朋友 交易, 基地 間 搬運, 長距離 移動 時間 節約 等에 對하여 標準 化程 및 危險 管理로 安定 的 引渡을 提供합니다.",
+        howTitle: "運用 方式",
+        howDesc: "依賴 後 時刻·座標·受渡 方式을 協議하고, 段階 別 檢證으로 正確 無誤한 引渡을 保證합니다.",
+        whyTitle: "選擇 事由",
+        whyDesc: "多 時區 運營, 標準 手續, 遲延 補償, 基本 保障으로 每次 交付를 安心히 進行합니다.",
+        serviceTitle: "顧客 服務",
+        serviceLead: "支援 需要 時, 下 記 連絡 手段을 利用해 주십시오.",
+        serviceNote: "回答 時間은 伺服器 狀況 및 時差에 따라 變動할 수 있습니다. 可及的 迅速히 回答하겠습니다.",
+        qqNote: "朋友 追加 時 ‘TC 速運’이라 記入해 주십시오.",
+        toPricingBtn: "價格 보기",
+        toOrderBtn: "注文 移動",
+        pricingTitle: "價格 案內",
+        pricingLead: "明確한 階段 料金, 批次 單位 請求.",
+        thTier: "區間（每 批次）",
+        thRate: "單價",
+        thUnit: "結算 單位",
+        p1Range: "一–五 件", p1Price: "2.5 CNY", p1Unit: "五 件 當",
+        p2Range: "六–十 件", p2Price: "5.0 CNY", p2Unit: "五 件 當",
+        p3Range: "十 件 以上", p3Price: "10.0 CNY", p3Unit: "五 件 當",
+        pricingNote: "五 件을 一 單位로 計算합니다. 未滿 五 件은 一 單位로, 超過 分은 次 單位로 切上합니다.",
+        toServiceBtn: "顧客 服務 連結",
+        toOrderBtn2: "卽時 注文",
+        footerBrand: "TC 速運",
+        rights: "All rights reserved."
+      }
+    };
+
+    const $ = id => document.getElementById(id);
+
+    function setSection(name){
+      ["home","customer","pricing"].forEach(id=>{
+        const el = $(id);
+        if(!el) return;
+        el.classList.toggle("active", id===name);
+      });
+      if(name==="customer") $("serviceTitle").focus?.();
+      if(name==="pricing") $("pricingTitle").focus?.();
+      if(name==="home") window.scrollTo({top:0,behavior:"smooth"});
+    }
+
+    function applyText(d){
+      $("siteTitle").textContent = d.siteTitle + " | TC Express";
+      document.title = d.siteTitle + " | TC Express";
+
+      $("heroTitle").textContent = d.heroTitle;
+      $("heroSubtitle").textContent = d.heroSubtitle;
+      $("orderBtn").textContent = d.orderBtn;
+      $("customerBtn").textContent = d.customerBtn;
+      $("pricingBtn").textContent = d.pricingBtn;
+
+      $("badgeFast").textContent = d.badgeFast;
+      $("badgeSecure").textContent = d.badgeSecure;
+      $("badgeCoverage").textContent = d.badgeCoverage;
+
+      $("introTitle").textContent = d.introTitle;
+      $("introDesc").textContent = d.introDesc;
+      $("howTitle").textContent = d.howTitle;
+      $("howDesc").textContent = d.howDesc;
+      $("whyTitle").textContent = d.whyTitle;
+      $("whyDesc").textContent = d.whyDesc;
+
+      $("serviceTitle").textContent = d.serviceTitle;
+      $("serviceLead").textContent = d.serviceLead;
+      $("serviceNote").textContent = d.serviceNote;
+      $("qqNote").textContent = d.qqNote;
+      $("toPricingBtn").textContent = d.toPricingBtn;
+      $("toOrderBtn").textContent = d.toOrderBtn;
+
+      $("pricingTitle").textContent = d.pricingTitle;
+      $("pricingLead").textContent = d.pricingLead;
+      $("thTier").textContent = d.thTier;
+      $("thRate").textContent = d.thRate;
+      $("thUnit").textContent = d.thUnit;
+
+      $("p1Range").textContent = d.p1Range; $("p1Price").textContent = d.p1Price; $("p1Unit").textContent = d.p1Unit;
+      $("p2Range").textContent = d.p2Range; $("p2Price").textContent = d.p2Price; $("p2Unit").textContent = d.p2Unit;
+      $("p3Range").textContent = d.p3Range; $("p3Price").textContent = d.p3Price; $("p3Unit").textContent = d.p3Unit;
+
+      $("pricingNote").textContent = d.pricingNote;
+      $("toServiceBtn").textContent = d.toServiceBtn;
+      $("toOrderBtn2").textContent = d.toOrderBtn2;
+
+      $("footerBrand").textContent = d.footerBrand;
+      $("rights").textContent = d.rights;
+    }
+
+    function switchLang(code){
+      const d = langData[code] || langData["en"];
+      applyText(d);
+      ["btn-en","btn-zh-tw","btn-zh-cn","btn-yue","btn-ja","btn-ko"].forEach(id=>{
+        const btn = $(id);
+        if(!btn) return;
+        btn.classList.toggle("active", id==="btn-"+code);
+      });
+      document.documentElement.lang = code === "zh-tw" ? "zh-Hant"
+        : code === "zh-cn" ? "zh-Hans"
+        : code;
+    }
+
+    $("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
